@@ -1,0 +1,6 @@
+interface:
+  display_name: "Maintain Premonition Logs"
+  short_description: "Keep Premonition evidence and its human story aligned"
+  default_prompt: "Use $maintain-premonition-build-log to append and validate the paired BUILDLOG.md and DEVLOG.md entries for this session."
+policy:
+  allow_implicit_invocation: true
