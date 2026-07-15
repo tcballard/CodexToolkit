@@ -41,7 +41,7 @@ Invoke it directly with `$authored-macos-design`, or ask the toolkit to design o
 
 ## Status
 
-`v0.1.0` adds Authored Frontend Design and Authored macOS Design to the initial Product Demo scaffold. The Authored Design skills retain separate web and native doctrines so each can evolve without collapsing into a generic cross-platform aesthetic.
+`v0.0.2` adds Authored Frontend Design and Authored macOS Design to the initial Product Demo scaffold. The Authored Design skills retain separate web and native doctrines so each can evolve without collapsing into a generic cross-platform aesthetic.
 
 ## Principles
 
