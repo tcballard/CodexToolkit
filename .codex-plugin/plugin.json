@@ -16,6 +16,8 @@
     "frontend-design",
     "macos-design",
     "product-communication",
+    "premonition",
+    "build-log",
     "developer-tools"
   ],
   "skills": "./skills/",
@@ -33,6 +35,8 @@
       "Design a distinctive production-grade web interface.",
       "Design a native macOS interface with an authored shell.",
       "Turn these product facts into concise, candid public communication.",
+      "Resume the next eligible Premonition build phase.",
+      "Append and validate the paired Premonition build and development logs.",
       "Show me the available toolkit skills."
     ]
   }

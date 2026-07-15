@@ -1,0 +1,9 @@
+interface:
+  display_name: Build Premonition
+  short_description: Run spec-led Sol build sessions for Premonition
+  default_prompt: Use @build-premonition to inspect the Premonition workspace, read
+    its authoritative specification and build log, identify the current session, and
+    execute only the next eligible phase with the required Sol provenance and macOS
+    verification.
+policy:
+  allow_implicit_invocation: true

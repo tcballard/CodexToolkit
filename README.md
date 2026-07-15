@@ -47,9 +47,21 @@ The standalone [Merge & Tell repository](https://github.com/tcballard/MergeAndTe
 
 Invoke it directly with `$merge-and-tell` when the destination is public product communication.
 
+### Build Premonition
+
+Runs specification-led GPT-5.6 Sol sessions for the Premonition macOS menu-bar app. It establishes the authoritative specification and repository state, enforces phase entry and exit criteria, routes native implementation through the appropriate macOS workflows, protects the product's safety invariants, and records exact verification and provenance.
+
+Invoke it directly with `$build-premonition` when starting, resuming, implementing, reviewing, testing, packaging, or preparing a submission for Premonition.
+
+### Maintain Premonition Logs
+
+Maintains Premonition's paired append-only `BUILDLOG.md` and `DEVLOG.md`: an evidence-backed session handoff and Sol provenance record alongside a candid builder diary. It includes deterministic validation for structure, pairing, and append-only integrity.
+
+Invoke it directly with `$maintain-premonition-build-log` at session boundaries, phase transitions, compaction checkpoints, owner decisions, verification results, deviations, failures, or blockers.
+
 ## Status
 
-`v0.0.3` bundles Merge & Tell alongside Product Demo and the two Authored Design skills. Merge & Tell continues to evolve in its standalone repository and is synchronized here for toolkit releases.
+`v0.0.3` bundles Merge & Tell, Build Premonition, and Maintain Premonition Logs alongside Product Demo and the two Authored Design skills. Merge & Tell continues to evolve in its standalone repository and is synchronized here for toolkit releases.
 
 ## Principles
 
