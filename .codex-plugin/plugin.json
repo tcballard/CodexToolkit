@@ -1,7 +1,7 @@
 {
   "name": "tcballard-toolkit",
-  "version": "0.0.1",
-  "description": "A workshop of focused skills for building, presenting, and shipping software with Codex.",
+  "version": "0.0.2",
+  "description": "A workshop of focused skills for designing, building, presenting, and shipping software with Codex.",
   "author": {
     "name": "Tom Ballard",
     "url": "https://github.com/tcballard"
@@ -13,6 +13,8 @@
     "codex",
     "skills",
     "product-demo",
+    "frontend-design",
+    "macos-design",
     "developer-tools"
   ],
   "skills": "./skills/",
@@ -27,6 +29,8 @@
     ],
     "defaultPrompt": [
       "Plan and verify a truthful product demo.",
+      "Design a distinctive production-grade web interface.",
+      "Design a native macOS interface with an authored shell.",
       "Show me the available toolkit skills."
     ]
   }

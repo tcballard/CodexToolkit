@@ -23,9 +23,25 @@ Product Demo treats the official Remotion plugin as an optional maintained compa
 
 Invoke it directly with `$product-demo`, or invoke the toolkit and ask for a product demo.
 
+### Authored Frontend Design
+
+Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
+
+It explicitly rejects generic template convergence: predictable SaaS layouts, default framework styling, placeholder copy, disconnected visual systems, and polish without usability completeness.
+
+Invoke it directly with `$authored-frontend-design`, or ask the toolkit to design or substantially restyle a web interface.
+
+### Authored macOS Design
+
+Designs native macOS interfaces with an authored shell while preserving platform behavior: windows, commands, focus, selection, keyboard access, accessibility, desktop density, and narrow AppKit boundaries.
+
+It adds target-aware Liquid Glass guidance, evidence-based design review, expressive anti-convergence rules, and native patterns for utility surfaces, inspectors, split views, tables, documents, and menu-bar applications.
+
+Invoke it directly with `$authored-macos-design`, or ask the toolkit to design or substantially restyle a native Mac interface.
+
 ## Status
 
-`v0.0.1` is the initial scaffold. Product Demo is the first included skill and Premonition will be its first real end-to-end proving ground.
+`v0.0.2` adds Authored Frontend Design and Authored macOS Design to the initial Product Demo scaffold. The Authored Design skills retain separate web and native doctrines so each can evolve without collapsing into a generic cross-platform aesthetic.
 
 ## Principles
 

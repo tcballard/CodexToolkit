@@ -1,0 +1,4 @@
+interface:
+  display_name: "Authored Frontend Design"
+  short_description: "Create distinctive production-grade web interfaces"
+  default_prompt: "Use $authored-frontend-design to design and implement this frontend with a coherent art direction and complete production states."
