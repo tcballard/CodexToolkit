@@ -39,9 +39,17 @@ It adds target-aware Liquid Glass guidance, evidence-based design review, expres
 
 Invoke it directly with `$authored-macos-design`, or ask the toolkit to design or substantially restyle a native Mac interface.
 
+### Merge & Tell
+
+Drafts and rewrites concise, candid public product communication with a builder-operator voice. It supports launch posts, release and shipping updates, incident communication, feedback prompts, community replies, and critiques of existing copy without inventing facts or impersonating individuals.
+
+The standalone [Merge & Tell repository](https://github.com/tcballard/MergeAndTell) remains the canonical development source. This toolkit contains a synchronized copy for personal distribution. Install either the standalone plugin or this toolkit when using `$merge-and-tell`; installing both would expose the same skill name twice.
+
+Invoke it directly with `$merge-and-tell` when the destination is public product communication.
+
 ## Status
 
-`v0.0.2` adds Authored Frontend Design and Authored macOS Design to the initial Product Demo scaffold. The Authored Design skills retain separate web and native doctrines so each can evolve without collapsing into a generic cross-platform aesthetic.
+`v0.0.3` bundles Merge & Tell alongside Product Demo and the two Authored Design skills. Merge & Tell continues to evolve in its standalone repository and is synchronized here for toolkit releases.
 
 ## Principles
 
