@@ -1,0 +1,4 @@
+interface:
+  display_name: "Authored macOS Design"
+  short_description: "Create distinctive native macOS interfaces"
+  default_prompt: "Use $authored-macos-design to design and implement this native Mac interface with an authored shell and complete platform behavior."
