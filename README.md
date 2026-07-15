@@ -23,6 +23,14 @@ Product Demo treats the official Remotion plugin as an optional maintained compa
 
 Invoke it directly with `$product-demo`, or invoke the toolkit and ask for a product demo.
 
+### Launch Pack
+
+Plans, assembles, audits, and hands off an evidence-backed launch package across repository, website, social, community, store, submission, and demo surfaces.
+
+It owns the shared release contract, claims ledger, asset inventory, channel matrix, readiness gates, and cross-channel consistency. Specialist production remains with Product Demo, Merge & Tell, and the Authored Design skills. A deterministic checker catches missing files, placeholders, blocked claims, inconsistent versions, and unready final states without pretending to prove the underlying claims.
+
+Invoke it directly with `$launch-pack` when preparing or reviewing a coordinated software launch.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -61,7 +69,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.3` bundles Merge & Tell, Build Premonition, and Maintain Premonition Logs alongside Product Demo and the two Authored Design skills. Merge & Tell continues to evolve in its standalone repository and is synchronized here for toolkit releases.
+`v0.0.4` adds Launch Pack as the evidence and orchestration layer connecting Product Demo, Merge & Tell, Authored Design, and project-specific release records.
 
 ## Principles
 
