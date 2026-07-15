@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Demo"
+  short_description: "Direct truthful, code-edited product demo videos"
+  default_prompt: "Use $product-demo to plan, edit, and verify a concise product demo from real application footage."
+
+policy:
+  allow_implicit_invocation: true
