@@ -1,0 +1,33 @@
+{
+  "name": "tcballard-toolkit",
+  "version": "0.0.1",
+  "description": "A workshop of focused skills for building, presenting, and shipping software with Codex.",
+  "author": {
+    "name": "Tom Ballard",
+    "url": "https://github.com/tcballard"
+  },
+  "homepage": "https://github.com/tcballard/CodexToolkit",
+  "repository": "https://github.com/tcballard/CodexToolkit",
+  "license": "Apache-2.0",
+  "keywords": [
+    "codex",
+    "skills",
+    "product-demo",
+    "developer-tools"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "TC Ballard Toolkit",
+    "shortDescription": "Focused workflows for building and shipping with Codex.",
+    "longDescription": "A growing workshop of focused Codex skills. Capabilities can mature inside the toolkit and graduate into standalone plugins when they deserve independent distribution.",
+    "developerName": "Tom Ballard",
+    "category": "Productivity",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Plan and verify a truthful product demo.",
+      "Show me the available toolkit skills."
+    ]
+  }
+}
