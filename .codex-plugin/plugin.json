@@ -1,6 +1,6 @@
 {
   "name": "tcballard-toolkit",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A workshop of focused skills for designing, building, presenting, and shipping software with Codex.",
   "author": {
     "name": "Tom Ballard",
@@ -28,6 +28,8 @@
     "visual-assets",
     "image-adaptation",
     "brand-fidelity",
+    "macos-icon",
+    "icon-preflight",
     "frontend-design",
     "macos-design",
     "product-communication",
@@ -53,6 +55,7 @@
       "Preflight this open-source contribution before opening a pull request.",
       "Check this technical product name across current namespaces and collisions.",
       "Faithfully adapt this approved visual asset to a new format and verify it.",
+      "Inspect this source artwork for macOS app-icon readiness and prepare a handoff.",
       "Design a distinctive production-grade web interface.",
       "Design a native macOS interface with an authored shell.",
       "Turn these product facts into concise, candid public communication.",

@@ -71,6 +71,14 @@ It records source and output hashes, preserves proportions, distinguishes an alp
 
 Invoke it directly with `$visual-asset-adapter` to adapt or review an existing source asset.
 
+### macOS App Icon Preflight
+
+Inspects real source artwork for modern macOS app-icon suitability and, where safely authorized, prepares deterministic source variants without silently redesigning the icon.
+
+It measures alpha bounds and edge clearance, flags likely pre-baked masks and external halos as heuristics for visual confirmation, renders a labeled small-size preview grid, refreshes version-sensitive claims from current Apple sources, and keeps design, Xcode integration, and release readiness separate.
+
+Invoke it directly with `$macos-app-icon-preflight` before handing icon artwork to Xcode or Build macOS Apps.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -109,7 +117,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.9` adds Visual Asset Adapter for non-destructive, evidence-backed reformatting of approved brand artwork.
+`v0.0.10` adds macOS App Icon Preflight for current, evidence-backed inspection and preparation of real icon artwork.
 
 ## Principles
 
