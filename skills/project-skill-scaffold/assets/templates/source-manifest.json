@@ -1,0 +1,11 @@
+{
+  "schema_version": "{{SCHEMA_VERSION}}",
+  "project_name": {{PROJECT_NAME_JSON}},
+  "skill_slug": {{SKILL_SLUG_JSON}},
+  "sources": {{SOURCES_JSON}},
+  "milestones": {{MILESTONES_JSON}},
+  "specialists": {{SPECIALISTS_JSON}},
+  "status_file": {{STATUS_FILE_JSON}},
+  "managed_files": {{MANAGED_FILES_JSON}},
+  "generated_hashes": {{GENERATED_HASHES_JSON}}
+}

@@ -79,6 +79,14 @@ It measures alpha bounds and edge clearance, flags likely pre-baked masks and ex
 
 Invoke it directly with `$macos-app-icon-preflight` before handing icon artwork to Xcode or Build macOS Apps.
 
+### Project Skill Scaffold
+
+Generates and safely refreshes lean `build-<project>` orchestration Skills from stable specifications and inspectable repositories.
+
+Its hard stability gate rejects vague ideas; its generator produces authority, milestone, repository, source-provenance, state-inspection, and validation contracts without copying large specifications or embedding transient completion. Refreshes always write a separate candidate and diff, preserve unmanaged files, and protect detected hand edits.
+
+Invoke it directly with `$project-skill-scaffold` when a long-running project needs a reusable, extraction-safe session orchestrator rather than another one-off handoff.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -117,7 +125,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.10` adds macOS App Icon Preflight for current, evidence-backed inspection and preparation of real icon artwork.
+`v0.0.11` adds Project Skill Scaffold for stable, evidence-backed project orchestration Skill generation and safe refresh.
 
 ## Principles
 
