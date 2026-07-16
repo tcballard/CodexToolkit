@@ -31,6 +31,14 @@ It owns the shared release contract, claims ledger, asset inventory, channel mat
 
 Invoke it directly with `$launch-pack` when preparing or reviewing a coordinated software launch.
 
+### GitHub Social Preview
+
+Creates polished 1280 × 640 repository social-preview PNGs below 1 MB using confirmed product facts and the exact repository logo. Image generation is limited to supporting backgrounds or illustrations; final logo placement and typography are composed deterministically.
+
+It validates dimensions and byte size, creates a temporary 50% thumbnail, requires visual inspection at both sizes, and stops without committing, pushing, editing the README, or changing GitHub settings.
+
+Invoke it directly with `$github-social-preview` when creating or auditing `assets/github-social-preview.png`.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -69,7 +77,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.4` adds Launch Pack as the evidence and orchestration layer connecting Product Demo, Merge & Tell, Authored Design, and project-specific release records.
+`v0.0.5` adds GitHub Social Preview as Launch Pack's exact-brand repository artwork specialist.
 
 ## Principles
 

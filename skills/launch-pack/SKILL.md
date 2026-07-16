@@ -62,6 +62,7 @@ Use the templates in `assets/templates/`. Put finished channel deliverables unde
 
 - Use `product-demo` for launch videos, walkthroughs, shot lists, captions, media inspection, and export QA. Pass it the verified brief and claims ledger.
 - Use `merge-and-tell` for launch posts, release updates, community copy, and channel-specific rewrites. Supply only verified facts, required qualifications, and the selected call to action.
+- Use `github-social-preview` for exact-brand repository link-preview artwork. Supply the confirmed product facts, exact tagline, repository assets, and channel constraints.
 - Use `authored-frontend-design` for a launch page or web surface that needs implementation.
 - Use `authored-macos-design` when launch work requires changes to a native Mac presentation surface.
 - For Premonition, use `build-premonition` and `maintain-premonition-build-log` as evidence sources and provenance workflows; do not let launch materials overrule the specification or logs.

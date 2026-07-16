@@ -1,0 +1,6 @@
+interface:
+  display_name: "GitHub Social Preview"
+  short_description: "Create exact, branded repository link-preview artwork"
+  default_prompt: "Use $github-social-preview to create and validate a branded 1280×640 GitHub social-preview PNG for this repository."
+policy:
+  allow_implicit_invocation: true
