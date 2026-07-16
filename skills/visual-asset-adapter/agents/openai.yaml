@@ -1,0 +1,6 @@
+interface:
+  display_name: "Visual Asset Adapter"
+  short_description: "Faithfully reformat and verify approved visual assets"
+  default_prompt: "Use $visual-asset-adapter to adapt this approved source asset to the requested format without redesigning it, then verify the result."
+policy:
+  allow_implicit_invocation: true

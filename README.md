@@ -63,6 +63,14 @@ It normalizes candidate variants, chooses current registries from the actual dis
 
 Invoke it directly with `$technical-product-name-check` before adopting or comparing technical product names.
 
+### Visual Asset Adapter
+
+Faithfully reformats approved logos, wordmarks, artwork, and finished compositions for new canvases and destinations without turning adaptation into redesign.
+
+It records source and output hashes, preserves proportions, distinguishes an alpha channel from actual transparent pixels, verifies exact dimensions and bytes, and requires full-size plus destination-preview inspection. Mechanical and explicitly approved compositional changes are supported; semantic image editing remains a separate authorized workflow.
+
+Invoke it directly with `$visual-asset-adapter` to adapt or review an existing source asset.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -101,7 +109,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.8` adds Technical Product Name Check for current, evidence-backed collision and namespace research.
+`v0.0.9` adds Visual Asset Adapter for non-destructive, evidence-backed reformatting of approved brand artwork.
 
 ## Principles
 
