@@ -47,6 +47,14 @@ It selects from an approved hero or screenshot, title, specific tagline, concise
 
 Invoke it directly with `$readme-front-door` when the repository's above-the-fold explanation needs writing, refinement, or audit.
 
+### Open-Source PR Preflight
+
+Audits a proposed contribution against an open-source repository's actual rules before maintainers see it. It establishes the target base and complete diff, checks scope and provenance, runs required repository checks, identifies DCO or CLA obligations, and prepares a truthful PR package and readiness verdict.
+
+Its deterministic checker catches mechanical blockers such as default-branch work, missing diffs, merge markers, whitespace errors, suspicious secret filenames, and oversized files. Publishing remains a separate explicitly authorized action.
+
+Invoke it directly with `$open-source-pr-preflight` before submitting a contribution to an open-source or third-party repository.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -85,7 +93,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.6` adds README Front Door for focused, evidence-backed improvement of a repository's opening explanation.
+`v0.0.7` adds Open-Source PR Preflight for respectful, evidence-backed contribution readiness before publication.
 
 ## Principles
 

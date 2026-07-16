@@ -1,0 +1,6 @@
+interface:
+  display_name: "Open-Source PR Preflight"
+  short_description: "Check a contribution before maintainers see it"
+  default_prompt: "Use $open-source-pr-preflight to audit this contribution against the target repository's rules before opening a pull request."
+policy:
+  allow_implicit_invocation: true

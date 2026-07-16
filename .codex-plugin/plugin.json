@@ -1,6 +1,6 @@
 {
   "name": "tcballard-toolkit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A workshop of focused skills for designing, building, presenting, and shipping software with Codex.",
   "author": {
     "name": "Tom Ballard",
@@ -19,6 +19,9 @@
     "social-preview",
     "readme",
     "documentation",
+    "open-source",
+    "pull-request",
+    "contribution",
     "frontend-design",
     "macos-design",
     "product-communication",
@@ -41,6 +44,7 @@
       "Plan, assemble, and validate an evidence-backed launch package.",
       "Create a polished branded GitHub social-preview image for this repository.",
       "Make this repository README understandable within seconds.",
+      "Preflight this open-source contribution before opening a pull request.",
       "Design a distinctive production-grade web interface.",
       "Design a native macOS interface with an authored shell.",
       "Turn these product facts into concise, candid public communication.",
