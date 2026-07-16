@@ -55,6 +55,14 @@ Its deterministic checker catches mechanical blockers such as default-branch wor
 
 Invoke it directly with `$open-source-pr-preflight` before submitting a contribution to an open-source or third-party repository.
 
+### Technical Product Name Check
+
+Runs a dated, source-linked practical collision and namespace preflight for developer tools, libraries, CLIs, applications, plugins, packages, and open-source projects.
+
+It normalizes candidate variants, chooses current registries from the actual distribution plan, separates exact and near collisions, checks package and command names independently, and returns an explainable risk rating without claiming legal or trademark clearance.
+
+Invoke it directly with `$technical-product-name-check` before adopting or comparing technical product names.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -93,7 +101,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.7` adds Open-Source PR Preflight for respectful, evidence-backed contribution readiness before publication.
+`v0.0.8` adds Technical Product Name Check for current, evidence-backed collision and namespace research.
 
 ## Principles
 
