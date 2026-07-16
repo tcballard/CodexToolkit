@@ -4,7 +4,8 @@ Select only channels that serve the launch objective. A complete pack is not one
 
 | Surface | Primary job | Typical deliverable | Specialist |
 | --- | --- | --- | --- |
-| Repository | Explain the release to evaluators and developers | README section, release notes, upgrade notes | Launch Pack |
+| Repository front door | Make the product understandable within seconds | README title, tagline, explanation, primary command, proof, demo, and justified badges | README Front Door |
+| Repository release detail | Explain the release to evaluators and developers | README section, release notes, upgrade notes | Launch Pack |
 | GitHub social preview | Make repository links recognisable at thumbnail size | 1280 × 640 branded PNG under 1 MB | GitHub Social Preview |
 | Website | Establish promise, proof, and action | Landing page or release page | Authored Frontend Design |
 | Product demo | Show one credible transformation | Video, captions, contact sheet, QA report | Product Demo |

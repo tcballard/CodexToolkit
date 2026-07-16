@@ -39,6 +39,14 @@ It validates dimensions and byte size, creates a temporary 50% thumbnail, requir
 
 Invoke it directly with `$github-social-preview` when creating or auditing `assets/github-social-preview.png`.
 
+### README Front Door
+
+Improves only the opening portion of a repository README so a visitor can understand the product, audience, outcome, distinction, and fastest credible way to try or see it within seconds.
+
+It selects from an approved hero or screenshot, title, specific tagline, concise explanation, verified install or first-use command, proof point, demo link, and restrained badges. It preserves the deeper README, rejects unsupported marketing claims, and deterministically checks unresolved placeholders and local asset paths.
+
+Invoke it directly with `$readme-front-door` when the repository's above-the-fold explanation needs writing, refinement, or audit.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -77,7 +85,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.5` adds GitHub Social Preview as Launch Pack's exact-brand repository artwork specialist.
+`v0.0.6` adds README Front Door for focused, evidence-backed improvement of a repository's opening explanation.
 
 ## Principles
 
