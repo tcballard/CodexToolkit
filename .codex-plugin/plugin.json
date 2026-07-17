@@ -41,7 +41,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "TC Ballard Toolkit",
+    "displayName": "@tcballard Codex Toolkit",
     "shortDescription": "Focused workflows for building and shipping with Codex.",
     "longDescription": "A growing workshop of focused Codex skills. Capabilities can mature inside the toolkit and graduate into standalone plugins when they deserve independent distribution.",
     "developerName": "Tom Ballard",
