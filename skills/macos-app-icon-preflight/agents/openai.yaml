@@ -1,0 +1,6 @@
+interface:
+  display_name: "macOS App Icon Preflight"
+  short_description: "Inspect and prepare Mac icon artwork with current evidence"
+  default_prompt: "Use $macos-app-icon-preflight to inspect this real source artwork for macOS icon readiness and produce a verified handoff without claiming release readiness."
+policy:
+  allow_implicit_invocation: true

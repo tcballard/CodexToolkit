@@ -1,0 +1,6 @@
+interface:
+  display_name: "README Front Door"
+  short_description: "Make a repository understandable within seconds"
+  default_prompt: "Use $readme-front-door to improve only the opening portion of this repository's README."
+policy:
+  allow_implicit_invocation: true

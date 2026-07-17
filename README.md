@@ -23,6 +23,70 @@ Product Demo treats the official Remotion plugin as an optional maintained compa
 
 Invoke it directly with `$product-demo`, or invoke the toolkit and ask for a product demo.
 
+### Launch Pack
+
+Plans, assembles, audits, and hands off an evidence-backed launch package across repository, website, social, community, store, submission, and demo surfaces.
+
+It owns the shared release contract, claims ledger, asset inventory, channel matrix, readiness gates, and cross-channel consistency. Specialist production remains with Product Demo, Merge & Tell, and the Authored Design skills. A deterministic checker catches missing files, placeholders, blocked claims, inconsistent versions, and unready final states without pretending to prove the underlying claims.
+
+Invoke it directly with `$launch-pack` when preparing or reviewing a coordinated software launch.
+
+### GitHub Social Preview
+
+Creates polished 1280 × 640 repository social-preview PNGs below 1 MB using confirmed product facts and the exact repository logo. Image generation is limited to supporting backgrounds or illustrations; final logo placement and typography are composed deterministically.
+
+It validates dimensions and byte size, creates a temporary 50% thumbnail, requires visual inspection at both sizes, and stops without committing, pushing, editing the README, or changing GitHub settings.
+
+Invoke it directly with `$github-social-preview` when creating or auditing `assets/github-social-preview.png`.
+
+### README Front Door
+
+Improves only the opening portion of a repository README so a visitor can understand the product, audience, outcome, distinction, and fastest credible way to try or see it within seconds.
+
+It selects from an approved hero or screenshot, title, specific tagline, concise explanation, verified install or first-use command, proof point, demo link, and restrained badges. It preserves the deeper README, rejects unsupported marketing claims, and deterministically checks unresolved placeholders and local asset paths.
+
+Invoke it directly with `$readme-front-door` when the repository's above-the-fold explanation needs writing, refinement, or audit.
+
+### Open-Source PR Preflight
+
+Audits a proposed contribution against an open-source repository's actual rules before maintainers see it. It establishes the target base and complete diff, checks scope and provenance, runs required repository checks, identifies DCO or CLA obligations, and prepares a truthful PR package and readiness verdict.
+
+Its deterministic checker catches mechanical blockers such as default-branch work, missing diffs, merge markers, whitespace errors, suspicious secret filenames, and oversized files. Publishing remains a separate explicitly authorized action.
+
+Invoke it directly with `$open-source-pr-preflight` before submitting a contribution to an open-source or third-party repository.
+
+### Technical Product Name Check
+
+Runs a dated, source-linked practical collision and namespace preflight for developer tools, libraries, CLIs, applications, plugins, packages, and open-source projects.
+
+It normalizes candidate variants, chooses current registries from the actual distribution plan, separates exact and near collisions, checks package and command names independently, and returns an explainable risk rating without claiming legal or trademark clearance.
+
+Invoke it directly with `$technical-product-name-check` before adopting or comparing technical product names.
+
+### Visual Asset Adapter
+
+Faithfully reformats approved logos, wordmarks, artwork, and finished compositions for new canvases and destinations without turning adaptation into redesign.
+
+It records source and output hashes, preserves proportions, distinguishes an alpha channel from actual transparent pixels, verifies exact dimensions and bytes, and requires full-size plus destination-preview inspection. Mechanical and explicitly approved compositional changes are supported; semantic image editing remains a separate authorized workflow.
+
+Invoke it directly with `$visual-asset-adapter` to adapt or review an existing source asset.
+
+### macOS App Icon Preflight
+
+Inspects real source artwork for modern macOS app-icon suitability and, where safely authorized, prepares deterministic source variants without silently redesigning the icon.
+
+It measures alpha bounds and edge clearance, flags likely pre-baked masks and external halos as heuristics for visual confirmation, renders a labeled small-size preview grid, refreshes version-sensitive claims from current Apple sources, and keeps design, Xcode integration, and release readiness separate.
+
+Invoke it directly with `$macos-app-icon-preflight` before handing icon artwork to Xcode or Build macOS Apps.
+
+### Project Skill Scaffold
+
+Generates and safely refreshes lean `build-<project>` orchestration Skills from stable specifications and inspectable repositories.
+
+Its hard stability gate rejects vague ideas; its generator produces authority, milestone, repository, source-provenance, state-inspection, and validation contracts without copying large specifications or embedding transient completion. Refreshes always write a separate candidate and diff, preserve unmanaged files, and protect detected hand edits.
+
+Invoke it directly with `$project-skill-scaffold` when a long-running project needs a reusable, extraction-safe session orchestrator rather than another one-off handoff.
+
 ### Authored Frontend Design
 
 Creates distinctive, production-grade web interfaces with a committed art direction, a functional signature element, token-driven styling, complete interaction and failure states, accessibility, and responsive behavior.
@@ -61,7 +125,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.3` bundles Merge & Tell, Build Premonition, and Maintain Premonition Logs alongside Product Demo and the two Authored Design skills. Merge & Tell continues to evolve in its standalone repository and is synchronized here for toolkit releases.
+`v0.0.11` adds Project Skill Scaffold for stable, evidence-backed project orchestration Skill generation and safe refresh.
 
 ## Principles
 

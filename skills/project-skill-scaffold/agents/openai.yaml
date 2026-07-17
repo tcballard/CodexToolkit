@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Skill Scaffold"
+  short_description: "Generate safe project-specific orchestration Skills"
+  default_prompt: "Use $project-skill-scaffold to inspect this repository and stable specification, then generate or safely refresh a validated build-project Skill without implementing the project."
+policy:
+  allow_implicit_invocation: true

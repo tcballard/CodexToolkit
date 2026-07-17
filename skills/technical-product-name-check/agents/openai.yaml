@@ -1,0 +1,6 @@
+interface:
+  display_name: "Technical Product Name Check"
+  short_description: "Check technical names across current namespaces"
+  default_prompt: "Use $technical-product-name-check to run a current collision and namespace preflight for this product name."
+policy:
+  allow_implicit_invocation: true
