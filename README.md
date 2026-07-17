@@ -1,8 +1,21 @@
-# TC Ballard Toolkit
+# @tcballard Codex Toolkit
 
-A growing workshop of focused skills for building, presenting, and shipping software with Codex.
+**A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
-The toolkit gives useful workflows somewhere to mature without turning every experiment into a separate distributable. Skills can remain here, work together, and graduate into standalone plugins later if their audience or release cadence diverges.
+[![Plugin version](https://img.shields.io/badge/plugin-v0.0.12-24292f?style=flat-square)](.codex-plugin/plugin.json)
+[![Skills](https://img.shields.io/badge/skills-14-cb5c35?style=flat-square)](skills)
+[![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
+
+@tcballard Codex Toolkit packages 14 focused workflows for product design, repository polish, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
+
+### Install
+
+```bash
+codex plugin marketplace add tcballard/CodexToolkit
+codex plugin add tcballard-toolkit@tcballard-toolkit
+```
+
+Start a new Codex session after installation, then invoke a Skill directly—for example, `$readme-front-door`, `$launch-pack`, or `$authored-macos-design`. In the ChatGPT desktop app, the same marketplace is available from **Plugins** after it has been added and the app restarted.
 
 ## Included skills
 
@@ -125,7 +138,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.11` adds Project Skill Scaffold for stable, evidence-backed project orchestration Skill generation and safe refresh.
+`v0.0.12` adds a repository marketplace and a direct installation path for Codex sessions. Project Skill Scaffold remains the latest Skill addition.
 
 ## Principles
 
