@@ -1,4 +1,4 @@
-# TC Ballard Toolkit
+# @tcballard Codex Toolkit
 
 **A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
@@ -6,7 +6,7 @@
 [![Skills](https://img.shields.io/badge/skills-14-cb5c35?style=flat-square)](skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
 
-TC Ballard Toolkit packages 14 focused workflows for product design, repository polish, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
+@tcballard Codex Toolkit packages 14 focused workflows for product design, repository polish, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
 
 ### Install
 
