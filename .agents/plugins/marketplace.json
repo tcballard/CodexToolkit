@@ -1,7 +1,7 @@
 {
   "name": "tcballard-toolkit",
   "interface": {
-    "displayName": "TC Ballard Toolkit"
+    "displayName": "@tcballard Codex Toolkit"
   },
   "plugins": [
     {
