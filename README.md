@@ -2,11 +2,11 @@
 
 **A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
-[![Plugin version](https://img.shields.io/badge/plugin-v0.0.12-24292f?style=flat-square)](.codex-plugin/plugin.json)
-[![Skills](https://img.shields.io/badge/skills-14-cb5c35?style=flat-square)](skills)
+[![Plugin version](https://img.shields.io/badge/plugin-v0.0.13-24292f?style=flat-square)](.codex-plugin/plugin.json)
+[![Skills](https://img.shields.io/badge/skills-15-cb5c35?style=flat-square)](skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
 
-@tcballard Codex Toolkit packages 14 focused workflows for product design, repository polish, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
+@tcballard Codex Toolkit packages 15 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
 
 ### Install
 
@@ -43,6 +43,14 @@ Plans, assembles, audits, and hands off an evidence-backed launch package across
 It owns the shared release contract, claims ledger, asset inventory, channel matrix, readiness gates, and cross-channel consistency. Specialist production remains with Product Demo, Merge & Tell, and the Authored Design skills. A deterministic checker catches missing files, placeholders, blocked claims, inconsistent versions, and unready final states without pretending to prove the underlying claims.
 
 Invoke it directly with `$launch-pack` when preparing or reviewing a coordinated software launch.
+
+### Community Radar
+
+Finds and ranks current communities, discussions, unanswered questions, complaints, alternative requests, and participation opportunities using dated public evidence and transparent anti-spam scoring.
+
+It owns audience inference, community fit, conversation verification, opportunity ranking, participation posture, and the ordered next-step plan. `last30days` can supply emerging discussions; Merge & Tell can draft communication after an opportunity is chosen; Launch Pack remains responsible for coordinated launches.
+
+Invoke it directly with `$community-radar` when deciding where a project can earn attention by joining the right conversation.
 
 ### GitHub Social Preview
 
@@ -138,7 +146,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.12` adds a repository marketplace and a direct installation path for Codex sessions. Project Skill Scaffold remains the latest Skill addition.
+`v0.0.13` adds Community Radar for evidence-backed conversation discovery, community fit, and authentic participation planning.
 
 ## Principles
 

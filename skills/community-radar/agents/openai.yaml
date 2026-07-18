@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Radar"
+  short_description: "Find conversations worth joining"
+  default_prompt: "Use $community-radar to find current communities and conversations where this project can participate authentically."

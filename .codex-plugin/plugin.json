@@ -1,6 +1,6 @@
 {
   "name": "tcballard-toolkit",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A workshop of focused skills for designing, building, presenting, and shipping software with Codex.",
   "author": {
     "name": "Tom Ballard",
@@ -12,6 +12,9 @@
   "keywords": [
     "codex",
     "skills",
+    "community-research",
+    "community-radar",
+    "conversation-discovery",
     "product-demo",
     "launch",
     "release",
@@ -51,6 +54,7 @@
     ],
     "defaultPrompt": [
       "Plan and verify a truthful product demo.",
+      "Find current communities and conversations where this project can participate authentically.",
       "Plan, assemble, and validate an evidence-backed launch package.",
       "Create a polished branded GitHub social-preview image for this repository.",
       "Make this repository README understandable within seconds.",
