@@ -5,9 +5,9 @@ description: Research, draft, revise, and preflight AsDecided articles and durab
 
 # AsDecided Publishing
 
-Publish the clearest useful answer on the question. Earn citations by being specific, inspectable, and worth citing—not by repeating keywords.
+Publish the clearest useful answer to the question. Earn citations by being specific, inspectable, and worth citing—not by repeating keywords.
 
-This Skill is intentionally opinionated for AsDecided. It treats architectural decisions as durable technical artifacts and assumes the audience includes software engineers, technical leads, architects, engineering managers, platform teams, and AI coding-agent users.
+Read [agent-citation-scorecard.md](references/agent-citation-scorecard.md) before reviewing a draft or declaring a page ready.
 
 ## Operating principles
 
@@ -15,240 +15,154 @@ This Skill is intentionally opinionated for AsDecided. It treats architectural d
 2. State the answer early; do not hide it behind scene-setting.
 3. Prefer original evidence, concrete examples, and falsifiable claims over generic commentary.
 4. Separate what AsDecided currently does from what it recommends, intends, or may support later.
-5. Write for humans first, while making important passages easy for search and answer systems to retrieve accurately.
-6. Never claim that `llms.txt`, schema, metadata, or a particular writing pattern guarantees indexing, ranking, inclusion, or citation.
+5. Write for humans first while making important passages safe to retrieve and quote accurately.
+6. Never claim that `llms.txt`, schema, metadata, or a writing pattern guarantees indexing, ranking, inclusion, or citation.
 7. Never manufacture authority through invented benchmarks, customers, quotes, integrations, or consensus.
 
 ## Establish the publishing contract
 
-Before drafting, inspect the supplied repository, site, issue, release, product brief, prior article, or decision record. Build a compact ledger:
+Inspect the supplied repository, site, issue, release, brief, article, or decision record. Build a compact ledger:
 
-- `Confirmed`: directly supported by current product, repository, first-party documentation, or primary evidence.
-- `Observed`: directly measured or reproduced during this task, including the method and date.
+- `Confirmed`: supported by current first-party product or repository evidence.
+- `Observed`: measured or reproduced during this task, with method and date.
 - `Attributed`: supported by a named external source.
-- `Inferred`: a reasoned interpretation that must be labelled as such.
-- `Proposed`: future behaviour, design, recommendation, or roadmap item.
+- `Inferred`: a reasoned interpretation that remains labelled.
+- `Proposed`: future behaviour, recommendation, or roadmap item.
 - `Unknown`: material information that could not be verified.
 
-Do not draft product claims until the relevant ledger entries exist. Resolve naming consistently: **AsDecided** is the product and brand; `decided` is the CLI only where verified by current product evidence.
+Do not draft product claims until the relevant ledger entries exist. Use **AsDecided** for the product and brand; use `decided` for the CLI only where current evidence verifies it.
 
-## Choose the page job
-
-Assign one primary job before writing:
-
-- `definition`: establish a precise term and why it matters;
-- `how-to`: help a reader complete a specific workflow;
-- `decision guide`: compare approaches and state when each fits;
-- `technical argument`: defend a position with evidence and limits;
-- `reference`: provide durable facts, interfaces, schemas, commands, or conventions;
-- `product explanation`: explain verified AsDecided behaviour and boundaries;
-- `comparison`: compare named approaches without straw-manning competitors;
-- `research note`: publish original observations, measurements, or synthesis.
-
-One page may support secondary jobs, but the opening, title, structure, and call to action must serve the primary job.
+Assign one primary page job: `definition`, `how-to`, `decision guide`, `technical argument`, `reference`, `product explanation`, `comparison`, or `research note`. The title, opening, structure, and next action must serve that job.
 
 ## Research before prose
 
-Current web research is required for time-sensitive claims, standards, search-engine guidance, product behaviour outside the repository, competitor capabilities, and direct quotations. Prefer primary sources in this order:
+Current web research is required for time-sensitive claims, standards, external product behaviour, competitor capabilities, search-platform guidance, and direct quotations. Prefer:
 
-1. official documentation, specifications, standards, repositories, release notes, or first-party statements;
+1. official documentation, specifications, repositories, release notes, and first-party statements;
 2. original research, papers, datasets, and reproducible measurements;
 3. high-quality independent technical analysis;
-4. community evidence only when the claim is explicitly about community experience or practice.
+4. community evidence only for claims about community experience or practice.
 
-Record source URL, publisher, title, relevant claim, publication or update date when visible, checked-on date, and whether the source is primary. Place citations next to the claim they support. Do not collect sources merely to decorate the article.
-
-For an AsDecided product claim, prefer current repository behaviour and documentation over older marketing copy. If sources conflict, say so and narrow the claim.
+Record the source URL, publisher, title, supported claim, visible publication or update date, checked-on date, and whether it is primary. Put citations beside the claims they support. For AsDecided behaviour, prefer current repository behaviour and documentation over older marketing copy.
 
 ## Build the answer architecture
 
-A strong AsDecided page normally contains:
+A substantive page should normally include:
 
 1. a specific title matching the reader's real question;
 2. a two-to-four sentence direct answer near the top;
-3. an explicit definition of the central entity or term;
+3. a precise definition of the central entity or term;
 4. the practical problem and affected workflow;
 5. the mechanism or recommended approach;
-6. at least one concrete example, decision, repository scenario, command, schema, or failure mode;
+6. at least one concrete example, decision, repository scenario, command, schema, measurement, or failure mode;
 7. trade-offs, limits, and cases where the approach is wrong;
 8. a concise conclusion or next action;
-9. directly adjacent sources and a checked-on date where freshness matters.
+9. adjacent sources and visible freshness context where relevant.
 
-Use descriptive headings that remain meaningful when extracted alone. Prefer question headings when users genuinely ask that question; do not turn every heading into a contrived FAQ.
+Use headings that remain meaningful when extracted alone. Do not manufacture an FAQ structure merely for schema or search appearance.
 
 ## Write citation-worthy passages
 
-Important passages should survive extraction without misleading the reader. For each central claim:
+For each central claim:
 
-- name the subject explicitly rather than relying on pronouns;
+- name the subject explicitly;
 - state one main proposition per paragraph;
 - define uncommon terms on first use;
-- include scope, conditions, and exceptions in the same passage;
-- use concrete nouns, dates, versions, commands, and repository paths when material;
-- place the supporting citation immediately after the supported sentence or paragraph;
+- include scope, conditions, and important exceptions nearby;
+- use concrete dates, versions, commands, and paths when material;
+- place the supporting citation immediately after the supported claim;
 - distinguish product fact, recommendation, inference, and opinion;
 - avoid unsupported superlatives, vague market claims, and circular definitions.
 
-Include a compact quotable definition only when it is genuinely useful. Do not write synthetic soundbites solely for agents.
+Include a compact quotable definition only when it helps the reader. Do not write synthetic soundbites solely for agents.
 
-## Original-value requirement
+## Require original value
 
-Do not publish a page that merely paraphrases existing search results. Every substantive article must contribute at least one of:
+Do not publish a page that merely paraphrases existing results. Every substantive page must contribute at least one original framework, reproducible measurement, implementation pattern, worked example, novel synthesis, product-specific observation, negative result, failure mode, or evidence-backed checklist. Name that contribution in the publishing brief.
 
-- an original framework or decision model;
-- a reproducible test or measurement;
-- an implementation pattern;
-- a concrete worked example;
-- a novel synthesis across primary sources;
-- a product-specific observation grounded in current behaviour;
-- a useful negative result, trade-off, or failure mode;
-- a reusable checklist tied to evidence.
+## Run the discoverability preflight
 
-State which contribution the page makes in the publishing brief.
-
-## Technical discoverability preflight
-
-Inspect or specify, as appropriate:
+Inspect or specify:
 
 - one indexable canonical URL;
-- server-rendered or otherwise reliably accessible primary content;
+- reliably accessible primary content;
 - unique title and meta description aligned with the page job;
 - canonical, Open Graph, and social-card metadata;
-- one clear H1 and logical heading hierarchy;
-- descriptive internal links from relevant AsDecided pages;
-- links to primary evidence using stable URLs;
+- one H1 and a logical heading hierarchy;
+- useful internal links from relevant AsDecided pages;
+- stable links to primary evidence;
 - sitemap inclusion and sensible `robots.txt` behaviour;
 - no accidental `noindex`, authentication wall, script-only content, or canonical mismatch;
-- article author, publisher, published date, modified date, and checked-on date where relevant;
+- visible author, publisher, published date, modified date, and checked-on date where relevant;
 - structured data that matches visible content.
 
-Recommend Schema.org types conservatively. Typical candidates include `Article`, `TechArticle`, `SoftwareApplication`, `Organization`, `Person`, and `BreadcrumbList`. Use `FAQPage` only when the page visibly contains genuine questions and answers and current platform guidance makes it appropriate. Never add schema for content the reader cannot see.
+Recommend Schema.org types conservatively. Typical candidates are `Article`, `TechArticle`, `SoftwareApplication`, `Organization`, `Person`, and `BreadcrumbList`. Use `FAQPage` only for genuine visible questions and answers. Treat `llms.txt` as an optional navigation aid, never as an indexing or citation mechanism.
 
-Treat `llms.txt` as an optional navigation aid, not an indexing or citation mechanism. It must not substitute for crawlable pages, strong internal linking, sitemaps, or clear documentation.
+## Run the agent-access preflight
 
-## Agent-access preflight
+Confirm an unauthenticated agent can retrieve the same substantive content a human sees. Flag facts available only after interaction, content trapped in images or video, ambiguous entities, inconsistent naming, remote evidence, inaccessible tables, context-free code, stale claims, and paragraphs likely to become misleading when extracted.
 
-Check whether an unauthenticated agent can retrieve the same substantive content a human sees. Flag:
-
-- essential facts available only after client-side interaction;
-- content hidden in images, video, canvas, or inaccessible embeds;
-- ambiguous product or organisation identity;
-- inconsistent naming across title, copy, schema, repository, and metadata;
-- important claims separated from their evidence;
-- tables without surrounding prose or clear headers;
-- code samples without language, context, expected result, or version assumptions;
-- stale pages that lack visible update context;
-- unsupported claims likely to be repeated inaccurately when extracted.
-
-Do not recommend cloaking, agent-specific factual variants, or serving materially different claims to bots and users.
-
-## Internal-link model
-
-Link for understanding, not PageRank theatre. Each article should identify:
-
-- the parent concept or product page;
-- prerequisite definitions;
-- directly related decisions or implementation guides;
-- one logical next question;
-- relevant AsDecided documentation or repository evidence.
-
-Use descriptive anchor text. Avoid repeated exact-match anchors, orphan pages, sitewide keyword links, and unrelated cross-linking.
+Never recommend cloaking, agent-specific factual variants, or materially different claims for bots and users.
 
 ## Draft and review workflow
 
-### 1. Produce a publishing brief
+### 1. Produce the publishing brief
 
-Include:
-
-- primary page job;
-- target reader and triggering question;
-- direct answer;
-- confirmed entity names;
-- evidence ledger;
-- original contribution;
-- required examples;
-- source plan;
-- likely internal links;
-- appropriate structured data;
-- claims that must not be made;
-- freshness and review requirements.
+Include the page job, target reader, triggering question, direct answer, entity names, evidence ledger, original contribution, required examples, source plan, internal links, structured-data choice, forbidden claims, freshness requirements, and review trigger.
 
 ### 2. Draft
 
-Write in AsDecided's preferred voice: direct, technically literate, calm, specific, and candid about trade-offs. Avoid generic SaaS language, SEO filler, inflated urgency, unexplained jargon, and repetitive conclusions.
+Write in AsDecided's voice: direct, technically literate, calm, specific, and candid about trade-offs. Avoid generic SaaS language, SEO filler, inflated urgency, unexplained jargon, and repetitive conclusions.
 
 ### 3. Run the citation review
 
-For every externally verifiable claim, mark one outcome:
-
-- `Cited`: supported by an adjacent source;
-- `First-party`: supported by inspected AsDecided evidence;
-- `Observed`: reproduced and documented during this task;
-- `Qualified`: narrowed so it no longer overclaims;
-- `Removed`: unsupported or unnecessary.
-
-Any remaining unmarked material claim blocks publication.
+Mark every material externally verifiable claim as `Cited`, `First-party`, `Observed`, `Qualified`, or `Removed`. Any unmarked material claim blocks publication.
 
 ### 4. Run the extraction review
 
-Read only the title, opening answer, headings, first sentence of each section, definitions, tables, captions, and conclusion. Confirm that this reduced view still identifies:
+Read only the title, opening answer, headings, first sentence of each section, definitions, tables, captions, and conclusion. The reduced view must still identify the topic, answer, audience, mechanism, important limitation, and what is specifically true about AsDecided.
 
-- what the page is about;
-- the direct answer;
-- who the advice applies to;
-- the main mechanism;
-- the important limitation;
-- what is specifically true about AsDecided.
+### 5. Produce and validate the Agent Citation Scorecard
 
-Repair ambiguity without making the prose robotic.
+Create the JSON scorecard defined in [agent-citation-scorecard.md](references/agent-citation-scorecard.md). Every check needs evidence. Warnings need a risk and follow-up; `na` needs a reason; failures block readiness.
 
-### 5. Deliver the publication package
+Validate the persisted scorecard:
+
+```bash
+python3 scripts/validate_agent_citation_scorecard.py agent-citation-scorecard.json
+```
+
+The scorecard measures citation readiness and extraction safety. It does not predict or guarantee that an agent or answer engine will cite the page.
+
+### 6. Deliver the publication package
 
 Return or persist:
 
 1. publishing brief;
 2. finished draft;
 3. evidence and citation ledger;
-4. metadata recommendation;
-5. structured-data recommendation or implementation;
-6. internal-link plan;
-7. technical and agent-access findings;
-8. blocked claims and unresolved unknowns;
-9. checked-on date and review trigger.
+4. Agent Citation Scorecard and validator result;
+5. metadata recommendation;
+6. structured-data recommendation or implementation;
+7. internal-link plan;
+8. technical and agent-access findings;
+9. blocked claims and unresolved unknowns;
+10. checked-on date and review trigger.
 
 ## Quality gates
 
-A page is not ready when any of the following is true:
-
-- the opening does not answer the title;
-- the article lacks an original contribution;
-- AsDecided behaviour is described without current first-party evidence;
-- a material factual claim lacks evidence or qualification;
-- citations are remote from the claims they support;
-- a quoted or paraphrased source is misrepresented;
-- the central term or entity is ambiguous;
-- examples are generic placeholders rather than plausible technical scenarios;
-- recommendations omit meaningful trade-offs or failure cases;
-- metadata promises something the page does not deliver;
-- structured data contradicts or exceeds visible content;
-- primary content is inaccessible without interaction or authentication;
-- the draft relies on keyword repetition, mass-produced variants, or synthetic FAQs;
-- the page could plausibly mislead an agent when a paragraph is extracted alone.
+A page is not ready when the opening does not answer the title; it lacks original value; AsDecided behaviour lacks current first-party evidence; a material claim lacks support or qualification; citations are remote; a source is misrepresented; entities are ambiguous; examples are placeholders; trade-offs are missing; metadata overpromises; schema exceeds visible content; primary content is inaccessible; the draft relies on keyword repetition or synthetic FAQs; a paragraph becomes misleading when extracted; or the Agent Citation Scorecard is incomplete or blocked.
 
 ## Integration boundaries
 
-- A specialist SEO suite may crawl the whole site, measure performance, inspect Search Console, validate schema at scale, or perform broader technical audits. This Skill owns AsDecided's publishing standard and page-level citation readiness.
-- `$community-radar` may identify recurring questions and conversations worth turning into durable articles.
-- `$merge-and-tell` may adapt an approved article into public launch or social communication.
-- `$launch-pack` owns coordinated release packaging across channels.
-- `$authored-frontend-design` owns substantial visual and interaction design for article or documentation surfaces.
+- A specialist SEO suite may crawl the site, measure performance, inspect Search Console, validate schema at scale, or run broad technical audits. This Skill owns AsDecided's publishing standard and page-level citation readiness.
+- `$community-radar` may identify recurring questions worth turning into durable articles.
+- `$merge-and-tell` may adapt an approved article into public communication.
+- `$launch-pack` owns coordinated release packaging.
+- `$authored-frontend-design` owns substantial visual and interaction design.
 
 All integrations are optional. The Skill must remain useful when extracted from the toolkit.
 
 ## Safety and integrity boundary
 
-- Never fabricate sources, quotes, dates, test results, customers, rankings, traffic, citations, or agent mentions.
-- Never imply endorsement by OpenAI, Google, Anthropic, Microsoft, Perplexity, or another platform without explicit evidence.
-- Never automate publication, outreach, link placement, or account changes without explicit authorization.
-- Never recommend doorway pages, cloaking, scraped-content multiplication, fake authorship, review schema abuse, hidden text, or manipulative link schemes.
-- Report weak evidence, crawl blocks, stale content, ambiguous claims, and likely non-citation candidly even when they reduce the publishing recommendation.
+Never fabricate sources, quotes, dates, results, customers, rankings, traffic, citations, or agent mentions. Never imply platform endorsement without evidence. Never automate publication, outreach, link placement, or account changes without explicit authorization. Never recommend doorway pages, cloaking, scraped-content multiplication, fake authorship, schema abuse, hidden text, or manipulative link schemes. Report weak evidence, crawl blocks, stale content, ambiguous claims, and likely non-citation candidly.
