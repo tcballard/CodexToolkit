@@ -2,11 +2,11 @@
 
 **A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
-[![Plugin version](https://img.shields.io/badge/plugin-v0.0.13-24292f?style=flat-square)](.codex-plugin/plugin.json)
-[![Skills](https://img.shields.io/badge/skills-15-cb5c35?style=flat-square)](skills)
+[![Plugin version](https://img.shields.io/badge/plugin-v0.0.14-24292f?style=flat-square)](.codex-plugin/plugin.json)
+[![Skills](https://img.shields.io/badge/skills-19-cb5c35?style=flat-square)](skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
 
-@tcballard Codex Toolkit packages 15 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
+@tcballard Codex Toolkit packages 19 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
 
 ### Install
 
@@ -51,6 +51,16 @@ Finds and ranks current communities, discussions, unanswered questions, complain
 It owns audience inference, community fit, conversation verification, opportunity ranking, participation posture, and the ordered next-step plan. `last30days` can supply emerging discussions; Merge & Tell can draft communication after an opportunity is chosen; Launch Pack remains responsible for coordinated launches.
 
 Invoke it directly with `$community-radar` when deciding where a project can earn attention by joining the right conversation.
+
+### AsDecided Publishing Suite
+
+Three linked skills turn first-party product and audience evidence into durable AsDecided content without creating a content farm:
+
+- `$asdecided-content-radar` ranks evidence-backed opportunities and refresh work;
+- `$asdecided-publishing` develops technically credible, citation-worthy canonical pages;
+- `$asdecided-distribute` turns an approved source into a small set of faithful channel-native derivatives.
+
+Use the individual skill that owns the current stage; none of them publishes automatically.
 
 ### GitHub Social Preview
 
@@ -132,6 +142,14 @@ The standalone [Merge & Tell repository](https://github.com/tcballard/MergeAndTe
 
 Invoke it directly with `$merge-and-tell` when the destination is public product communication.
 
+### Write X Bangers
+
+Writes, rewrites, critiques, and plans X posts and threads using X's published recommendation-system mechanics as editorial constraints rather than a promise of reach.
+
+It targets a recognisable audience, leads with a self-contained idea, keeps factual proof close to the claim, creates an honest reply or share surface, verifies X's weighted 280-character limit, and avoids hype, engagement bait, hashtag piles, and invented evidence. Its dated source snapshot correctly treats ranking weights as coefficients on personalised action predictions—not raw engagement-count equivalences.
+
+Use `$write-x-bangers` when the destination is X and distribution mechanics matter. Use `$merge-and-tell` for broader public product communication.
+
 ### Build Premonition
 
 Runs specification-led GPT-5.6 Sol sessions for the Premonition macOS menu-bar app. It establishes the authoritative specification and repository state, enforces phase entry and exit criteria, routes native implementation through the appropriate macOS workflows, protects the product's safety invariants, and records exact verification and provenance.
@@ -146,7 +164,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.13` adds Community Radar for evidence-backed conversation discovery, community fit, and authentic participation planning.
+`v0.0.14` adds Write X Bangers for evidence-led, recommendation-aware X posts and brings the catalog metadata in sync with the 19 packaged skills.
 
 ## Principles
 

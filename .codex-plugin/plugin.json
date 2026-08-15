@@ -1,6 +1,6 @@
 {
   "name": "tcballard-toolkit",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A workshop of focused skills for designing, building, presenting, and shipping software with Codex.",
   "author": {
     "name": "Tom Ballard",
@@ -40,7 +40,10 @@
     "product-communication",
     "premonition",
     "build-log",
-    "developer-tools"
+    "developer-tools",
+    "x-writing",
+    "social-posts",
+    "recommendation-ranking"
   ],
   "skills": "./skills/",
   "interface": {
@@ -66,6 +69,7 @@
       "Design a distinctive production-grade web interface.",
       "Design a native macOS interface with an authored shell.",
       "Turn these product facts into concise, candid public communication.",
+      "Turn these facts into a high-performing X post without hype or invented claims.",
       "Resume the next eligible Premonition build phase.",
       "Append and validate the paired Premonition build and development logs.",
       "Show me the available toolkit skills."
