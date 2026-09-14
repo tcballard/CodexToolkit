@@ -36,6 +36,8 @@ Use the smallest format that carries the idea:
 - **Quote post:** add a new claim, context, evidence, or consequence; never merely restate the quoted post.
 - **Reply:** answer the person directly and add one useful fact or perspective. Optimise for conversation, not parasitic visibility.
 
+Match length to substance. The public scorer includes predicted dwell and continuous dwell signals, but it does not establish a universally optimal post length. Do not add padding solely to chase dwell time.
+
 ## Draft the post
 
 1. Write several candidate opening lines silently. Select the one with the most specific tension, result, novelty, or utility.
