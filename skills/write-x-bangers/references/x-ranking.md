@@ -1,6 +1,6 @@
 # X ranking mechanics
 
-Verified 2026-08-15 against `xai-org/x-algorithm` at commit `c65aa179db7bdd61e2c2821eac87f208a105c053`.
+Verified 2026-09-14 against `xai-org/x-algorithm` at commit `6bb4594253cdfa9ea19983a54a401d5ce8f8275d`.
 
 Use this as a grounding reference, not a recipe for guaranteed reach. X runs experiments, some production values are configurable, and some prompts and anti-abuse rules are not published.
 
@@ -26,6 +26,7 @@ Selected defaults from `home-mixer/params/param.rs`:
 | Share | 2.0 |
 | Share by DM | 5.0 |
 | Share by copied link | 20.0 |
+| Dwell | 0.05 |
 | Quote | 5.0 |
 | Follow author | 4.0 |
 | Post click | 0.4 |
@@ -38,6 +39,8 @@ Selected defaults from `home-mixer/params/param.rs`:
 | Not dwelled | -0.02 |
 
 Interpret these only as coefficients on model predictions. A report is not “worth 468 likes”; X explicitly warns that this reading is wrong because base probabilities differ and predictions are viewer-specific.
+
+Since the previous snapshot, the public default moved weight `0.05` from qualified video view (`VqvWeight`) to predicted dwell (`DwellWeight`); continuous dwell time remains separately weighted at `0.004`. This broadens the published dwell signal but does not show that longer posts rank better. The scorer also implements deterministic per-viewer weight perturbation, while its public default sigma is `0.0`; treat it as configurable experiment support, not evidence of a live universal weighting scheme.
 
 ## Distribution adjustments
 
@@ -56,10 +59,12 @@ These are inferences from the system, not promises made by X:
 - Useful, surprising, or identity-relevant content can create authentic reasons to reply, quote, DM, copy, or follow.
 - Proof and precise framing reduce the risk that curiosity becomes disappointment or negative feedback.
 - Repetitive bursts are a weak strategy because author and content diversity are explicit system goals.
+- Match length to the idea. Published dwell signals do not establish an ideal post length, so extra words need editorial value rather than an algorithmic pretext.
 
 ## Primary sources
 
 - Repository and architecture: https://github.com/xai-org/x-algorithm
-- Production-mirrored defaults: https://github.com/xai-org/x-algorithm/blob/main/home-mixer/params/param.rs
-- Score calculation: https://github.com/xai-org/x-algorithm/blob/main/home-mixer/scorers/ranking_scorer.rs
-- Verified commit: https://github.com/xai-org/x-algorithm/commit/c65aa179db7bdd61e2c2821eac87f208a105c053
+- Production-mirrored defaults: https://github.com/xai-org/x-algorithm/blob/6bb4594253cdfa9ea19983a54a401d5ce8f8275d/home-mixer/params/param.rs
+- Score calculation: https://github.com/xai-org/x-algorithm/blob/6bb4594253cdfa9ea19983a54a401d5ce8f8275d/home-mixer/scorers/ranking_scorer.rs
+- Previous snapshot: https://github.com/xai-org/x-algorithm/commit/c65aa179db7bdd61e2c2821eac87f208a105c053
+- Verified commit: https://github.com/xai-org/x-algorithm/commit/6bb4594253cdfa9ea19983a54a401d5ce8f8275d
