@@ -1,92 +1,60 @@
 ---
 name: write-x-bangers
-description: Write, rewrite, critique, or plan high-performing posts and threads for X using the published X recommendation-system mechanics, strong editorial judgement, and an evidence-led builder voice. Use for X/Twitter posts, launch announcements, release posts, quote posts, threads, hooks, replies, post critiques, social copy, or requests to make a post a “banger,” more engaging, more shareable, or more likely to travel beyond existing followers.
+description: Write, rewrite, critique, or plan compelling X posts and threads in the author's voice, grounded in real experience and published recommendation mechanics. Use for X/Twitter bangers, launch posts, replies, quote posts, hooks, and reviews of post performance or this skill's algorithm guidance.
 ---
 
 # Write X Bangers
 
-Create posts people genuinely want to read, reply to, share, quote, or follow the author for. Use algorithm knowledge as a quality constraint, never as a promise or a substitute for a worthwhile idea.
+Find something worth saying, then make it travel without losing the author. Use algorithm knowledge as context, never a reach guarantee or a substitute for an interesting idea.
 
-Read [references/x-ranking.md](references/x-ranking.md) before explaining or applying ranking mechanics. Read [references/default-voice.md](references/default-voice.md) when the user has not supplied a different voice.
+Read [default voice](references/default-voice.md) unless the user provides a different voice. Read [ranking mechanics](references/x-ranking.md) when explaining or applying algorithm claims; ordinary drafting does not require a fresh algorithm investigation. Read [performance learning](references/performance-learning.md) when the user supplies results or asks for a retrospective. For hard length limits, use [length validation](references/length-validation.md).
 
-## Establish the job
+## Find the material
 
-Infer these inputs from the request and linked material:
+Infer the intended reader, purpose, and central observation from the request and available evidence. Identify what happened, the concrete detail that makes it believable, and the tension another person might recognise: surprise, frustration, a trade-off, an unexpected consequence, or a useful disagreement. A reflective or funny post need not contain a metric or product announcement.
 
-- audience: the specific people who should care
-- outcome: announce, teach, challenge, recruit, sell, or start a serious discussion
-- payload: one claim, result, lesson, or artifact worth passing on
-- proof: metric, shipped feature, demo, source, example, screenshot, or concrete experience
-- action: the one natural next step, if any
+Use the user's actual experience. Never invent incidents, numbers, quotations, availability, or release status. Inspect linked sources before making claims about them; distinguish shipped work from plans. Ask one concise question only if a missing fact materially changes the central claim. Otherwise draft with the evidence available.
 
-If a missing fact would make the central claim unsafe or materially different, ask one concise question. Otherwise make a reasonable assumption and draft immediately. Never invent proof, numbers, users, quotations, availability, or launch status.
+When given a successful reference, use that exact text to infer voice, rhythm, humour, length and certainty. Preserve uncertainty where it creates interest. Treat reported performance as an observation, not proof that a device caused reach. Do not repeatedly transplant a successful post's premise or surface structure.
 
-For a post about a linked page, release, repository, or product, inspect it before drafting. Distinguish shipped facts from plans. If the user asks for a current algorithm explanation, recheck the X source rather than relying only on the dated snapshot.
+## Select an angle and format
 
-## Choose the post shape
+Silently consider genuinely different angles, not just different hooks: the practical consequence, a personal admission, an unexpected result, a specific disagreement. Choose the strongest one for this request before polishing sentences. If the user says “try again,” change the premise, angle or emotional register; do not merely rephrase the opening. Use any specific feedback to guide that change.
 
-Use the smallest format that carries the idea:
+Choose the length that earns its space. Follow the current requested limit or supplied reference; do not turn a temporary preference into a permanent cap. With no length preference or reference, default to a portable ordinary post within 280 weighted characters. Use longer copy when requested or established by context. Distinguish a long post, thread and Article; do not split automatically or assume longer-format access. Never pad for dwell or compress a story just because short posts are fashionable.
 
-- **Single post:** default; keep it within X's 280-character weighted limit for portability unless the user asks for a long post. Treat each URL as 23 characters and verify the final count.
-- **Launch post:** lead with the user-visible change or result, then the product name and proof.
-- **Lesson post:** claim, concrete observation, implication.
-- **Contrarian post:** name the precise disagreement and earn it with evidence; do not manufacture conflict.
-- **Question post:** provide a useful premise before asking; avoid empty engagement bait.
-- **Thread:** use only when the reasoning, evidence, or sequence cannot fit honestly in one post. Give every post a distinct job and make the first post useful without opening the thread.
-- **Quote post:** add a new claim, context, evidence, or consequence; never merely restate the quoted post.
-- **Reply:** answer the person directly and add one useful fact or perspective. Optimise for conversation, not parasitic visibility.
+- For a launch, connect the user-visible change to proof and a natural next step.
+- For a personal observation, keep the actual experience and its payoff; allow a thought to remain unresolved.
+- For disagreement, name the precise position and earn the opinion. Do not manufacture an opponent.
+- For a thread, give each part a distinct job and make the opening useful on its own. Threads do not guarantee multiplied distribution.
+- For a quote post, add substance beyond the quoted text. For a reply, address the person directly.
+- Consider whether a screenshot, clip, artifact or link supplies evidence text cannot. Recommend media only when useful and available; never invent an attachment or add it for a supposed universal ranking bonus.
 
-## Draft the post
+For batches, vary premises and endings and honour the requested mix. Avoid several versions of the same observation disguised as separate posts.
 
-1. Write several candidate opening lines silently. Select the one with the most specific tension, result, novelty, or utility.
-2. Make the first line intelligible outside the author's follower graph. Name the subject early; avoid vague pronouns and throat-clearing.
-3. Spend the body on one idea. Prefer concrete nouns, active verbs, exact scope, and causal explanation.
-4. Add proof as close as possible to the claim it supports.
-5. Create an honest interaction surface:
-   - a useful artifact people may share or copy
-   - a decision or trade-off knowledgeable people can discuss
-   - a surprising result people may quote with their interpretation
-   - a clear reason to visit the profile or follow for the next instalment
-6. End cleanly. Add at most one content-native call to action. Do not append “Thoughts?” when the post does not need it.
-7. Remove generic setup, duplicated claims, inflated adjectives, needless hashtags, and any sentence that sounds generated.
+## Write in the author's voice
 
-When rewriting “without changing facts,” preserve factual claims and their certainty—not emojis, hype, hashtags, generic calls to action, or promotional framing. Remove weak furniture unless the user explicitly asks to retain it.
+Make the opening understandable to the intended audience, including unfamiliar readers when discovery is the goal. A personal opening can establish its subject naturally; do not force a product name into the first sentence. Spend the body on the chosen idea and place proof near the claim it supports.
 
-Clear topic semantics help the system match a post to interested viewers. Do not keyword-stuff. Natural specificity is stronger than a bag of trend terms.
+Keep earned enthusiasm, strong opinions, humour, self-deprecation and occasional rambling. Do not flatten a sharp observation into corporate caution. Remove fabricated controversy, deceptive curiosity gaps and unsupported certainty. Predicted negative feedback is not a reason to eliminate all disagreement.
 
-## Protect quality and reach
+Give the reader a payoff: recognition, a useful artifact, a new perspective, or a decision worth discussing. Sharing and following can be natural consequences; do not force an interaction request into every post. End cleanly, with a question only when the author actually wants the answer. Use a call to action when it serves the stated purpose.
 
-- Optimise for intended-viewer relevance before raw engagement.
-- Prefer a self-contained top-level post for discovery. Do not hide the central idea behind a link or an unexplained reply.
-- Give readers a legitimate reason to reply, share privately, copy the link, quote, or follow.
-- Avoid rage bait, deceptive curiosity gaps, forced polarisation, and repetitive posting bursts. Negative-action predictions explicitly reduce ranking, and repeated posts from one author are diversity-discounted.
-- Use zero hashtags by default; use at most one when it is a genuine discovery convention.
-- Use emojis only if they belong to the author's established voice.
-- Never state that a particular tactic “beats the algorithm” or guarantees reach.
-- Do not convert published scoring weights into engagement-count equivalences.
+Remove generic setup, repeated claims and promotional filler. Default to no hashtags; use one when it serves an actual convention. Use emojis when they fit the author's voice. Preserve facts and their certainty during rewrites, not unwanted hype or formulaic furniture.
 
-## Editorial gate
+## Editorial check
 
-Score the draft silently from 0–2 on each dimension and revise until no dimension is zero and the total is at least 10/12:
+Revise based on four questions, without a numerical grade or mandatory template:
 
-1. audience fit
-2. opening strength
-3. specificity and proof
-4. useful reply/share surface
-5. voice authenticity
-6. low regret risk: no hype, ambiguity, or likely negative response caused by poor framing
+- Is there something specific worth saying?
+- Does it sound like this author?
+- Can the intended reader understand it without missing context?
+- Is the payoff worth the attention it asks for?
 
-Do not show the rubric unless the user asks for critique or scoring.
+Keep factual accuracy mandatory. A deliberately rough, funny, provocative or unfinished thought may pass. These are editorial judgments, not validated ranking predictors. Do not promise virality or translate prediction coefficients into engagement-count exchange rates.
 
 ## Return the result
 
-Lead with the finished copy, not process commentary. Present it in a writing block when supported.
+Return one strongest finished post by default, in a writing block when supported. Omit alternative hooks, scores, process commentary and algorithm theory unless requested. Honour requests for multiple options. For a critique, give the decisive weakness, a concrete fix and rewritten copy. Validate hard limits on final text including links and thread numbering.
 
-Default output:
-
-1. one recommended post
-2. two alternative opening lines, only when they offer meaningfully different angles
-
-For a simple rewrite, return only the improved post unless alternatives would materially help. For a critique, give the decisive weakness, the fix, and a rewritten version. For a thread, number posts and verify that each is within the requested length.
-
-Do not clutter the answer with algorithm theory. Briefly explain the editorial choice only when requested or when the framing depends on a non-obvious trade-off.
+When reporting results, follow the learning reference and preserve observed facts separately from hypotheses. When refreshing algorithm guidance, follow the dated source procedure in the ranking reference and update both the installed skill and its maintained bundle through their supported workflows.

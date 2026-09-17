@@ -1,6 +1,14 @@
 interface:
-  display_name: "Write X Bangers"
-  short_description: "Write high-performing X posts without cringe"
-  default_prompt: "Use $write-x-bangers to turn these facts into a high-performing X post."
+  display_name: X Banger Writer
+  short_description: Write compelling X posts in your own voice
+  default_prompt: Use $write-x-bangers to find the strongest angle and write an X
+    post.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
 policy:
-  allow_implicit_invocation: false
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
