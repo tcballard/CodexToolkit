@@ -9,6 +9,18 @@ Make the repository's opening block answer, within seconds: what is this, who is
 
 Read [front-door-doctrine.md](references/front-door-doctrine.md) before drafting. Read [quality-gates.md](references/quality-gates.md) before delivery.
 
+## Default presentation
+
+Apply these defaults unless the user or repository explicitly requests a different style:
+
+- Centre the product title and short tagline using GitHub-compatible HTML. Keep explanatory prose left-aligned.
+- For Omarchy projects, centre one existing, verified project-type badge: **Plugin**, **App** or **Theme**, as appropriate. Do not add licence, build, version, download or status badges by default. Keep licence information in its file or documentation. Never invent a badge for another ecosystem.
+- Lead with what the product does and why someone would use it. Follow with one short paragraph, a few user-facing benefits and one clear way to try it. Keep implementation detail, internal process and lengthy caveats out of the opening; retain material limitations beside the relevant claim.
+- Prefer a real, approved on-device screenshot near the introduction. If the user has not supplied a suitable capture, reserve a short, visibly labelled preview slot and mark the capture as pending the user. Use `preview.png` at the repository root unless an existing asset convention applies. Do not create a fake screenshot, embed a missing image or imply the placeholder proves the app works.
+- When a screenshot arrives, inspect it, embed the approved file, remove the pending note and preserve the scope of testing it actually demonstrates. A missing screenshot does not negate testing the user has already confirmed.
+- Link to install, configuration and development detail instead of crowding the front door. Only move deeper README sections into docs when the user asks for a broader README simplification; preserve useful instructions and repair relative links.
+- Batch repository edits into one focused PR. Creating a PR does not authorize merging or publishing; honour any existing session authorization.
+
 ## Establish the evidence
 
 1. Locate the repository root and read its instructions, including `AGENTS.md` or equivalents.
@@ -29,7 +41,7 @@ It may contain only what earns a place there:
 - product title;
 - exact or evidence-backed tagline;
 - one short explanatory paragraph;
-- one primary install or first-use command;
+- one primary install command, first-use command or verified download link;
 - one key proof point;
 - one demo link;
 - a restrained set of authoritative status or compatibility badges.
@@ -42,7 +54,7 @@ Choose the order that best serves the repository rather than applying a fixed te
 
 1. **Identity:** the exact product name and a specific, non-cringe tagline.
 2. **Comprehension:** one paragraph stating what the product does, who it helps, and the meaningful distinction.
-3. **Action:** the shortest verified install or first-use command, ready to copy.
+3. **Action:** the shortest verified install or first-use path: a copyable command, or a download link with linked setup instructions.
 4. **Credibility:** one concrete, repository-supported proof point or visible demonstration.
 
 Prefer plain, confident language. Remove vague superlatives, breathless claims, empty mission language, and repeated phrasing. Never invent adoption, performance, compatibility, security, maturity, or availability claims.
@@ -67,10 +79,10 @@ When installation is conditional or unusually long, show the primary path and li
 Run the repository's relevant documentation or link checks when available. Then run:
 
 ```bash
-python3 scripts/audit_front_door.py README.md
+python3 <skill-root>/scripts/audit_front_door.py README.md
 ```
 
-The script checks the opening block for a title, unresolved placeholders, and broken local Markdown or HTML asset paths. It reports external links for manual verification; it does not prove claims, judge tone, or guarantee remote link availability.
+The script accepts Markdown or HTML H1 titles, ignores non-rendered HTML comments, and checks for unresolved template tokens and broken local Markdown or HTML asset paths. A clearly labelled pending screenshot note is allowed; a missing embedded image is not. It reports external links for manual verification; it does not prove claims, judge tone, or guarantee remote link availability.
 
 Review the rendered README or a faithful preview when tooling permits. Apply every gate in [quality-gates.md](references/quality-gates.md), inspect the diff to confirm the boundary held, and revise any failure.
 
