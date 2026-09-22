@@ -2,7 +2,7 @@
 
 ## Comprehension
 
-- The canonical product name is visible immediately.
+- The canonical product name is visible immediately, centred with its tagline by default.
 - A new visitor can identify the product, audience, outcome, and distinction within seconds.
 - The explanation is one concise paragraph rather than stacked marketing fragments.
 - Tone is direct, specific, and consistent with the repository.
@@ -17,7 +17,7 @@
 ## Action
 
 - There is one clear primary action when the product is currently usable.
-- The install or first-use command is copyable and needs no missing substitutions.
+- The primary action is a copyable command without missing substitutions, or a verified download link with setup instructions.
 - The demo link resolves to the intended destination when a confirmed demo exists.
 - Missing installation or demo content is omitted or honestly qualified, never invented.
 
@@ -27,7 +27,8 @@
 - Existing logos and brand assets are used without distortion or approximation.
 - Meaningful imagery has useful alt text.
 - Hero and screenshot placement supports comprehension at typical GitHub widths.
-- Badges are authoritative, current, linked usefully, and limited to those that aid evaluation.
+- Omarchy projects use only the appropriate Plugin/App/Theme badge by default; no licence or status badge clutter.
+- A pending preview is honestly labelled and has no broken image reference. Existing user-confirmed testing remains acknowledged.
 
 ## Scope
 

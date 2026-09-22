@@ -26,6 +26,8 @@ PLACEHOLDERS = (
 MARKDOWN_TARGET = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 HTML_TARGET = re.compile(r"<(?:img|source)\b[^>]*\b(?:src|srcset)=[\"']([^\"']+)[\"']", re.IGNORECASE)
 H1 = re.compile(r"^#\s+\S", re.MULTILINE)
+HTML_H1 = re.compile(r"<h1\b[^>]*>(.*?)</h1\s*>", re.IGNORECASE | re.DOTALL)
+HTML_COMMENT = re.compile(r"<!--.*?(?:-->|\Z)", re.DOTALL)
 SCHEMES = {"http", "https", "mailto", "data"}
 
 
@@ -87,6 +89,11 @@ def main() -> int:
         return 2
 
     opening = "\n".join(readme.read_text(encoding="utf-8").splitlines()[: args.lines])
+    opening = HTML_COMMENT.sub("", opening)
+    title_present = bool(H1.search(opening)) or any(
+        re.sub(r"<[^>]+>", "", match.group(1)).strip()
+        for match in HTML_H1.finditer(opening)
+    )
     placeholders = sorted(
         {match.group(0) for pattern in PLACEHOLDERS for match in pattern.finditer(opening)}
     )
@@ -97,8 +104,8 @@ def main() -> int:
             classified[kind].append(target)
 
     failures = []
-    if not H1.search(opening):
-        failures.append("No level-one Markdown title appears in the inspected opening.")
+    if not title_present:
+        failures.append("No level-one Markdown or HTML title appears in the inspected opening.")
     if placeholders:
         failures.append("Unresolved placeholder text appears in the inspected opening.")
     if classified["local-missing"]:
@@ -107,7 +114,7 @@ def main() -> int:
     result = {
         "readme": str(readme),
         "inspected_lines": args.lines,
-        "title_present": bool(H1.search(opening)),
+        "title_present": title_present,
         "placeholders": placeholders,
         "local_paths_ok": classified["local-ok"],
         "local_paths_missing": classified["local-missing"],
