@@ -23,14 +23,14 @@ Silently consider genuinely different angles, not just different hooks: the prac
 
 Choose the length that earns its space. Follow the current requested limit or supplied reference; do not turn a temporary preference into a permanent cap. With no length preference or reference, default to a portable ordinary post within 280 weighted characters. Use longer copy when requested or established by context. Distinguish a long post, thread and Article; do not split automatically or assume longer-format access. Never pad for dwell or compress a story just because short posts are fashionable.
 
-- For a launch, connect the user-visible change to proof and a natural next step.
+- For a launch, identify why the intended reader would care: a useful change, surprising result or personal consequence. Connect that angle to proof and a natural next step; a version number alone is not the angle.
 - For a personal observation, keep the actual experience and its payoff; allow a thought to remain unresolved.
 - For disagreement, name the precise position and earn the opinion. Do not manufacture an opponent.
 - For a thread, give each part a distinct job and make the opening useful on its own. Threads do not guarantee multiplied distribution.
 - For a quote post, add substance beyond the quoted text. For a reply, address the person directly.
 - Consider whether a screenshot, clip, artifact or link supplies evidence text cannot. Recommend media only when useful and available; never invent an attachment or add it for a supposed universal ranking bonus.
 
-For batches, vary premises and endings and honour the requested mix. Avoid several versions of the same observation disguised as separate posts.
+For batches, vary premises and endings and honour the requested mix. Compare the underlying observations, not just wording or project names; replace repeated premises with distinct material. Use recent supplied examples to avoid recycling a successful theme, without inventing unseen posting history.
 
 ## Write in the author's voice
 
