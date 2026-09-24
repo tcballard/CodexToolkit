@@ -2,9 +2,9 @@
 
 ## Evidence status
 
-Checked 17 September 2026 against official default-branch head `42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034` (05:09:29 UTC). Defaults header synchronized 16 September, 16:23:12 UTC. Previous saved check: 14 September at `6bb4594253cdfa9ea19983a54a401d5ce8f8275d`.
+Checked 24 September 2026 against official default-branch head `44d37ebf87f2185b949cd37b710d410c2a77d21f` (01:53:14 UTC). Home-mixer defaults header synchronized 23 September, 16:28:43 UTC. Compared with the installed 17 September baseline `42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034`, incorporating the maintained bundle’s draft 21 September review of `8b25829717a4f104dd04403ee7d0253c5fedb1b7`.
 
-Scope: static inspection of the published For You retrieval, ranking, filtering and selection paths and relevant recent changes. Publication is not proof of deployment date, experiment allocation or exact production predictions. Some dependencies, prompts, weights and anti-abuse internals are unavailable. Other surfaces can behave differently.
+Scope: targeted static inspection of changes to the published For You retrieval, scoring defaults and wiring, diversity, cold-start eligibility, and reply-spam paths; not a full audit of every upstream change. Publication is not proof of deployment date, experiment allocation or exact production predictions. Some dependencies, prompts, weights and anti-abuse internals are unavailable. Other surfaces can behave differently.
 
 Distinguish **published mechanism** (source-backed behavior and defaults), **editorial judgment** (a writing choice), and **hypothesis to test** (an unverified performance explanation). Do not present an inference as an algorithm rule.
 
@@ -14,7 +14,9 @@ Retrieval precedes scoring. Followed-account and discovery sources create candid
 
 Phoenix predicts viewer-specific actions from content and history. Ranking combines probabilities and continuous outputs, then applies additional adjustments and selection. Visibility, age, previously seen/served history, social context and conversation deduplication can affect eligibility. A good hypothetical score does not guarantee an impression.
 
-Selected public weighted-mode defaults:
+Scoring now uses shared arithmetic in `xai-value-model/scoring.rs`. Home-mixer computes local weighted scores and cold-start decisions, then requests value-model computation in `vm-ranker`, which resolves configuration and applies adjustments before DPP selection. The request explicitly enables computation even though the service parameter alone defaults false. Missing configuration or RPC failure can fall back to local scores; do not assume every route applies identical adjustments. Removed home-mixer parameters have moved to the service, not necessarily disappeared.
+
+Selected public weighted-score defaults (all 17 unchanged from the installed baseline):
 
 | Predicted action | Default weight |
 |---|---:|
@@ -48,18 +50,16 @@ Other relevant defaults: profile click `0.0`, photo expand `0.05`, video open `0
 - Author diversity uses `0.25 + 0.75 × 0.5^k` for successive same-author candidates in a score-ordered pool: `1`, `0.625`, `0.4375`, `0.34375`, approaching `0.25`. This is not a daily quota, posting timer or literal score halving each time.
 - The DPP diversity stage selects an embedding-diverse subset, preserving selected scores and assigning zero to unselected candidates in the inspected implementation. It does not merely rearrange adjacent posts; zero score does not by itself prove removal in every downstream route.
 - The inspected For You filter excludes candidates marked as out-of-network replies/reposts. This does not make replies invisible across X. Self-contained original posts can serve discovery, while replies serve real conversation. Deduplication means thread parts are not independent guaranteed reach opportunities.
-- Age filtering uses 48 hours. Cold-start eligibility now also allows up to 48 hours, but has follower, impression, source/experiment and placement conditions. No guaranteed boost or 1,000-impression entitlement follows.
+- The inspected general age filter and author cold-start eligibility use 48-hour maxima, with additional follower, impression, source/experiment and placement conditions. New retrieval/export machinery separately supports HOME_HOT/HOME_COLD pools and a two-hour cold-pool freshness default; split-checkpoint configuration defaults false. These are different stages, not a universal two-hour or 48-hour post lifespan. No guaranteed boost or impression entitlement follows.
 
 ### Changes since the previous saved check
 
-Public snapshots on 15–17 September changed click-dwell training/history features, cold-start eligibility, reply-spam routing, and experimental filtering despite all 17 table values remaining unchanged.
-
-- Home training adds a click-dwell binary objective above 10 seconds and history features; the probability output is not rescaled as seconds. Shared model changes may affect other predictions. Their live impact is unknown.
-- An optional scoring adjustment is replaced with predicted click probability × click-dwell prediction; its switch remains false and direct continuous click-dwell coefficient remains zero by default. Alternate scoring modes exist; the published default is weighted mode.
-- Cold-start maximum age increases from 86,400 to 172,800 seconds; freshness checks broaden across arms and treatment eligibility expands beyond the MOE source.
-- A favorite-count holdout filter is added but defaults disabled. Do not advise avoiding likes.
-- Reply-spam classifier selection and task thresholds change; prompts are withheld. This is not evidence of a blanket AI-text penalty or a safe follower threshold for spam.
-- Quote rendering adds authorship/self-quote context, without establishing a general self-quote penalty. New diversity telemetry is measurement, not itself a distribution penalty. Ads and infrastructure changes do not automatically imply organic-copy advice.
+- The optional dwell-regret and gated modes were removed on 18 September. The subsequent refactor removes `ranking_scorer.rs` and moves shared scoring to `xai-value-model`, with service-side defaults in `vm-ranker/params.rs`. The former optional click-probability × click-dwell adjustment is absent from the inspected current formula; direct continuous click-dwell weight remains zero.
+- Hot/cold retrieval pools, separate cold-start result limits and retrieval-source tracking were added. The inspected MOE defaults request zero ordinary candidates and 200 cold-start candidates, subject to source enablement and other gates. Candidate counts are retrieval limits, not promised impressions. Cold-pool metadata filtering is not a reason to avoid likes.
+- SimClusters age is now configurable, retaining the 48-hour default. Duplicate filtering retains retrieval provenance; this is not a new penalty for similar wording.
+- Author diversity, out-of-network adjustments and DPP selection remain in the configured service path. Trace request flags and fallback behavior before interpreting isolated defaults.
+- Reply-spam routing thresholds and parsing changed, including use of the full scorer for posts with quoted content. Withheld prompts and unknown live allocation prevent claims about a blanket AI-text penalty, quote-post penalty or safe follower threshold.
+- The previous click-dwell training/history work does not establish a direct dwell-padding tactic. Serving/export, ads, visibility and transparency changes do not automatically imply organic-copy advice. Under the Hood legal-takedown reporting is a transparency change.
 
 Historical correction: the old September 9 note overstated consistency with August. Dwell changed `0 → 0.05` and qualified video view `0.05 → 0` in the August 25 snapshot; video-open also changed `0.05 → 0.07` by September 9. These are historical corrections, not newly discovered September deployments. Mutual-follow reply boosting predates this refresh.
 
@@ -77,17 +77,24 @@ Prefer a recognisable subject, an earned payoff and truthful proof. These improv
 
 ## Pinned primary sources
 
-- [Defaults](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/home-mixer/params/param.rs)
-- [Scoring](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/home-mixer/scorers/ranking_scorer.rs)
-- [Cold start](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/home-mixer/scorers/author_cold_start.rs)
-- [Out-of-network filter](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/home-mixer/filters/oon_retweet_reply_filter.rs)
-- [Favorite holdout](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/home-mixer/filters/fav_holdout_filter.rs)
-- [Diversity selection](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/vm-ranker/scoring/dpp_model.rs)
-- [Retrieval configuration](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/phoenix/xrex/configs/xrecsys_two_tower.py)
-- [SimClusters source](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/home-mixer/sources/simclusters_source.rs)
-- [Training configuration](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/phoenix/xrex/configs/xrecsys.py)
-- [Model outputs](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/phoenix/xrex/models/recsys_model.py)
-- [History features](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/phoenix/xrex/models/recsys_feature_prep.py)
-- [Reply spam routing](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/grox/flows/reply_spam/task_filter.py)
-- [Publication limitations](https://github.com/xai-org/x-algorithm/blob/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034/README.md)
-- [Saved-to-current diff](https://github.com/xai-org/x-algorithm/compare/6bb4594253cdfa9ea19983a54a401d5ce8f8275d...42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034)
+- [Defaults](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/params/param.rs)
+- [Scoring](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/xai-value-model/scoring.rs)
+- [Cold start](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/scorers/author_cold_start.rs)
+- [Out-of-network filter](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/filters/oon_retweet_reply_filter.rs)
+- [Favorite holdout](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/filters/fav_holdout_filter.rs)
+- [Diversity selection](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/vm-ranker/scoring/dpp_model.rs)
+- [Retrieval configuration](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/phoenix/xrex/configs/xrecsys_two_tower.py)
+- [SimClusters source](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/sources/simclusters_source.rs)
+- [Training configuration](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/phoenix/xrex/configs/xrecsys.py)
+- [Model outputs](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/phoenix/xrex/models/recsys_model.py)
+- [History features](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/phoenix/xrex/models/recsys_feature_prep.py)
+- [Reply spam routing](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/grox/flows/reply_spam/task_filter.py)
+- [Publication limitations](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/README.md)
+- [Saved-to-current diff](https://github.com/xai-org/x-algorithm/compare/42266f3e2be54d8a3c4d2228aac2e8f8d1c1f034...44d37ebf87f2185b949cd37b710d410c2a77d21f)
+- [Service defaults](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/vm-ranker/params.rs)
+- [Scoring request](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/scorers/vm_ranker_request.rs)
+- [Service wiring](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/vm-ranker/scoring/mod.rs)
+- [Local scoring and fallback](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/scorers/vm_ranker.rs)
+- [Cold retrieval metadata and freshness](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/phoenix/xrex/data/cold_pool_filter.py)
+- [Cold-pool configuration](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/phoenix/xrex/models/recsys_two_tower_model.py)
+- [MOE retrieval](https://github.com/xai-org/x-algorithm/blob/44d37ebf87f2185b949cd37b710d410c2a77d21f/home-mixer/sources/phoenix_moe_source.rs)
