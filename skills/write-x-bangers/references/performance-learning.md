@@ -13,3 +13,5 @@ Separate:
 - **Next trial:** one meaningful change in angle, format or proof to compare over subsequent posts.
 
 Treat organic comparisons as suggestive, not randomised causal tests. Keep unsuccessful examples as well as hits. Never declare a format superior from one viral post, encourage duplicate spam for testing, or invent a posting interval from the ranking code. Update durable voice guidance only when repeated evidence or explicit user preference supports it.
+
+When unexplained reach is the concern and the author can access [Under the Hood](https://x.com/i/jf/under_the_hood), include a user-provided report as optional context. Record its reporting period, generation time, label names and stated effects separately from post analytics. It is an aggregate pilot report with eligibility checks, not a per-post causal explanation or an exhaustive ranking trace. A missing label does not prove unrestricted distribution. Do not assume access or require this report for ordinary drafting.
