@@ -1,0 +1,10 @@
+{
+  "contextual-image-upscale": {
+    "repository": "https://github.com/tcballard/tcballard-skills",
+    "path": "skills/contextual-image-upscale",
+    "source_commit": "6a453fc529bd06e1971bc6e51855cd4182a55169",
+    "source_tree": "996ff0a79acfbc668948c017bf8d09e1c0df6802",
+    "package_version": "0.1.0",
+    "verification": "All seven skill files match the canonical source byte for byte. Run the public repository's scripts/check-package.mjs with --compare against this copy."
+  }
+}
