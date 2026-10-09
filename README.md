@@ -2,7 +2,7 @@
 
 **A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
-[![Plugin version](https://img.shields.io/badge/plugin-v0.0.15-24292f?style=flat-square)](.codex-plugin/plugin.json)
+[![Plugin version](https://img.shields.io/badge/plugin-v0.0.16-24292f?style=flat-square)](.codex-plugin/plugin.json)
 [![Skills](https://img.shields.io/badge/skills-20-cb5c35?style=flat-square)](skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
 
@@ -12,10 +12,9 @@
 
 ```bash
 codex plugin marketplace add tcballard/CodexToolkit
-codex plugin add tcballard-toolkit@tcballard-toolkit
 ```
 
-Start a new Codex session after installation, then invoke a Skill directly—for example, `$readme-front-door`, `$launch-pack`, or `$authored-macos-design`. In the ChatGPT desktop app, the same marketplace is available from **Plugins** after it has been added and the app restarted.
+Open `/plugins` in Codex, select **@tcballard Codex Toolkit**, and install it. Start a new Codex session after installation, then invoke a Skill directly—for example, `$readme-front-door`, `$launch-pack`, or `$authored-macos-design`. See the official [Codex plugins guide](https://developers.openai.com/codex/plugins) for supported clients and setup.
 
 ## Included skills
 
@@ -102,6 +101,8 @@ It edits nine overlapping grid targets, then 4–8 salient focal targets per add
 
 The bundled dependency-free Node coordinate planner handles grid coverage, padding and source-to-master mapping; an available multi-image editor and capable raster-processing tools perform the image work. This is reconstructed detail, not a claim of recovered original information or native 8K generation.
 
+The maintained [tcballard Skills repository](https://github.com/tcballard/tcballard-skills) is now the canonical public development and distribution source. This toolkit retains a synchronized copy for existing users. Install one bundle when using `$contextual-image-upscale` to avoid duplicate skill names. [skill-sources.json](skill-sources.json) records the exact public source commit and skill tree; the public repository includes a checker for comparing distributed copies.
+
 Invoke it with `$contextual-image-upscale`: “Enhance this image in two passes at 8K.” Use Visual Asset Adapter for mechanical resizing and format changes.
 
 ### Visual Asset Adapter
@@ -174,7 +175,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.15` adds Contextual Image Upscale for faithful two- or three-pass AI enhancement and verified lossless export, bringing the toolkit to 20 skills.
+`v0.0.16` points Contextual Image Upscale at its maintained public source in `tcballard-skills`, retains the identical skill copy for existing users, and records synchronization provenance. The toolkit contains 20 skills.
 
 ## Principles
 
