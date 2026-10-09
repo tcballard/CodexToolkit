@@ -1,6 +1,6 @@
 {
   "name": "tcballard-toolkit",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A workshop of focused skills for designing, building, presenting, and shipping software with Codex.",
   "author": {
     "name": "Tom Ballard",
@@ -43,7 +43,9 @@
     "developer-tools",
     "x-writing",
     "social-posts",
-    "recommendation-ranking"
+    "recommendation-ranking",
+    "image-upscale",
+    "contextual-image-enhancement"
   ],
   "skills": "./skills/",
   "interface": {
@@ -64,6 +66,7 @@
       "Preflight this open-source contribution before opening a pull request.",
       "Check this technical product name across current namespaces and collisions.",
       "Faithfully adapt this approved visual asset to a new format and verify it.",
+      "Enhance this photo or illustration in two contextual passes and export a verified 8K PNG.",
       "Inspect this source artwork for macOS app-icon readiness and prepare a handoff.",
       "Generate a project-specific build Skill from this stable specification and repository.",
       "Design a distinctive production-grade web interface.",

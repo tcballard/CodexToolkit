@@ -2,11 +2,11 @@
 
 **A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
-[![Plugin version](https://img.shields.io/badge/plugin-v0.0.14-24292f?style=flat-square)](.codex-plugin/plugin.json)
-[![Skills](https://img.shields.io/badge/skills-19-cb5c35?style=flat-square)](skills)
+[![Plugin version](https://img.shields.io/badge/plugin-v0.0.15-24292f?style=flat-square)](.codex-plugin/plugin.json)
+[![Skills](https://img.shields.io/badge/skills-20-cb5c35?style=flat-square)](skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
 
-@tcballard Codex Toolkit packages 19 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
+@tcballard Codex Toolkit packages 20 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
 
 ### Install
 
@@ -94,6 +94,16 @@ It normalizes candidate variants, chooses current registries from the actual dis
 
 Invoke it directly with `$technical-product-name-check` before adopting or comparing technical product names.
 
+### Contextual Image Upscale
+
+Enhances existing photos and illustrations through two or three passes of contextual AI crop editing, registered blending, and visual review. The default export is a lossless PNG with an 8192-pixel longest edge and the original aspect ratio.
+
+It edits nine overlapping grid targets, then 4–8 salient focal targets per additional pass, always supplying the complete original as context. It preserves photographic or painted style, records native generated dimensions, limits targeted retries, and retains prior pixels when an edit introduces drift, invented structure, or repeated texture. Exact prompts, crop coordinates, transforms, quality findings and verified exports make each run reviewable and resumable.
+
+The bundled dependency-free Node coordinate planner handles grid coverage, padding and source-to-master mapping; an available multi-image editor and capable raster-processing tools perform the image work. This is reconstructed detail, not a claim of recovered original information or native 8K generation.
+
+Invoke it with `$contextual-image-upscale`: “Enhance this image in two passes at 8K.” Use Visual Asset Adapter for mechanical resizing and format changes.
+
 ### Visual Asset Adapter
 
 Faithfully reformats approved logos, wordmarks, artwork, and finished compositions for new canvases and destinations without turning adaptation into redesign.
@@ -164,7 +174,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.14` adds Write X Bangers for evidence-led, recommendation-aware X posts and brings the catalog metadata in sync with the 19 packaged skills.
+`v0.0.15` adds Contextual Image Upscale for faithful two- or three-pass AI enhancement and verified lossless export, bringing the toolkit to 20 skills.
 
 ## Principles
 
