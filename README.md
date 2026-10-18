@@ -2,11 +2,11 @@
 
 **A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
-[![Plugin version](https://img.shields.io/badge/plugin-v0.0.17-24292f?style=flat-square)](.codex-plugin/plugin.json)
-[![Skills](https://img.shields.io/badge/skills-21-cb5c35?style=flat-square)](skills)
+[![Plugin version](https://img.shields.io/badge/plugin-v0.0.18-24292f?style=flat-square)](.codex-plugin/plugin.json)
+[![Skills](https://img.shields.io/badge/skills-22-cb5c35?style=flat-square)](skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
 
-@tcballard Codex Toolkit packages 21 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
+@tcballard Codex Toolkit packages 22 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
 
 ### Install
 
@@ -17,6 +17,12 @@ codex plugin marketplace add tcballard/CodexToolkit
 Open `/plugins` in Codex, select **@tcballard Codex Toolkit**, and install it. Start a new Codex session after installation, then invoke a Skill directly—for example, `$readme-front-door`, `$launch-pack`, or `$authored-macos-design`. See the official [Codex plugins guide](https://developers.openai.com/codex/plugins) for supported clients and setup.
 
 ## Included skills
+
+### Be Ambitious
+
+Deepens a task through expert methods, primary sources and external verification while keeping its scope intact. It answers four concrete questions, then produces a copyable rewritten prompt and waits before executing it.
+
+Invoke `$be-ambitious`: “Help me get Omarchy running natively on my iPad.” Adapted from [DannyMac180/skills](https://github.com/DannyMac180/skills/tree/main/be-ambitious), with its MIT licence retained.
 
 ### The Daily Panorama
 
@@ -183,7 +189,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.17` adds The Daily Panorama with the approved mobile terminal format, a portable Node renderer, worked example and Linux/macOS/Windows CI. The toolkit contains 21 skills.
+`v0.0.18` adds Be Ambitious with Codex invocation metadata, upstream attribution and source provenance. The toolkit contains 22 skills.
 
 ## Principles
 
@@ -196,4 +202,4 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Licence
 
-Apache License 2.0. See [LICENSE](LICENSE).
+Apache License 2.0. See [LICENSE](LICENSE). The imported Be Ambitious skill retains its [MIT licence](skills/be-ambitious/LICENSE).
