@@ -1,0 +1,4 @@
+interface:
+  display_name: "The Daily Panorama"
+  short_description: "Create mobile-first Today in Omarchy panoramas"
+  default_prompt: "Use $daily-panorama to turn this Today in Omarchy edition into four connected mobile reading panels."

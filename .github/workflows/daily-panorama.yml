@@ -1,0 +1,33 @@
+name: Daily Panorama
+on:
+  pull_request:
+    paths:
+      - 'skills/daily-panorama/**'
+      - '.github/workflows/daily-panorama.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'skills/daily-panorama/**'
+      - '.github/workflows/daily-panorama.yml'
+permissions:
+  contents: read
+jobs:
+  render:
+    name: Render and validate (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: skills/daily-panorama/scripts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: skills/daily-panorama/scripts/package-lock.json
+      - run: npm ci
+      - run: npm test
