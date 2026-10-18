@@ -1,6 +1,6 @@
 {
   "name": "tcballard-toolkit",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A workshop of focused skills for designing, building, presenting, and shipping software with Codex.",
   "author": {
     "name": "Tom Ballard",
@@ -47,7 +47,9 @@
     "image-upscale",
     "contextual-image-enhancement",
     "daily-panorama",
-    "visual-newsletter"
+    "visual-newsletter",
+    "be-ambitious",
+    "prompt-refinement"
   ],
   "skills": "./skills/",
   "interface": {
@@ -78,6 +80,7 @@
       "Resume the next eligible Premonition build phase.",
       "Append and validate the paired Premonition build and development logs.",
       "Turn this Today in Omarchy edition into four connected mobile reading panels.",
+      "Deepen this task with expert methods, primary sources, and external verification.",
       "Show me the available toolkit skills."
     ]
   }

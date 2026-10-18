@@ -1,0 +1,4 @@
+interface:
+  display_name: "Be Ambitious"
+  short_description: "Deepen tasks with expert methods and real evidence"
+  default_prompt: "Use $be-ambitious to deepen this task with primary sources, expert methods and external verification while preserving its scope."
