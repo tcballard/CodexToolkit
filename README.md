@@ -2,11 +2,11 @@
 
 **A working set of sharp, evidence-led Skills for building and shipping with Codex.**
 
-[![Plugin version](https://img.shields.io/badge/plugin-v0.0.16-24292f?style=flat-square)](.codex-plugin/plugin.json)
-[![Skills](https://img.shields.io/badge/skills-20-cb5c35?style=flat-square)](skills)
+[![Plugin version](https://img.shields.io/badge/plugin-v0.0.17-24292f?style=flat-square)](.codex-plugin/plugin.json)
+[![Skills](https://img.shields.io/badge/skills-21-cb5c35?style=flat-square)](skills)
 [![License](https://img.shields.io/badge/license-Apache--2.0-2f6f67?style=flat-square)](LICENSE)
 
-@tcballard Codex Toolkit packages 20 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
+@tcballard Codex Toolkit packages 21 focused workflows for product design, repository polish, community research, launch preparation, visual production, project orchestration, and macOS delivery. Each Skill owns a narrow job, verifies what it can, and hands specialist implementation to the right capability instead of hiding broad prompts behind polished names.
 
 ### Install
 
@@ -17,6 +17,14 @@ codex plugin marketplace add tcballard/CodexToolkit
 Open `/plugins` in Codex, select **@tcballard Codex Toolkit**, and install it. Start a new Codex session after installation, then invoke a Skill directly—for example, `$readme-front-door`, `$launch-pack`, or `$authored-macos-design`. See the official [Codex plugins guide](https://developers.openai.com/codex/plugins) for supported clients and setup.
 
 ## Included skills
+
+### The Daily Panorama
+
+Turns Today in Omarchy reporting into one continuous terminal-style composition and four numbered mobile reading panels. The approved format uses 1080 × 2340 panels, the original green masthead, exact supplied headlines and deterministic typography.
+
+It includes a Node renderer, bundled fonts, the 17 October worked example, source notes, caption and edition records. It checks overflow and pixel-perfect reconstruction, preserves release/development caveats, and labels feed previews as simulations. Native X viewing remains unverified; nothing is posted automatically.
+
+Invoke `$daily-panorama`: “Turn this Today in Omarchy edition into four connected mobile panels. Keep my headlines and verify the sources.”
 
 ### Product Demo
 
@@ -175,7 +183,7 @@ Invoke it directly with `$maintain-premonition-build-log` at session boundaries,
 
 ## Status
 
-`v0.0.16` points Contextual Image Upscale at its maintained public source in `tcballard-skills`, retains the identical skill copy for existing users, and records synchronization provenance. The toolkit contains 20 skills.
+`v0.0.17` adds The Daily Panorama with the approved mobile terminal format, a portable Node renderer, worked example and Linux/macOS/Windows CI. The toolkit contains 21 skills.
 
 ## Principles
 

@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-17",
+  "sample": false,
+  "caption": "Today in Omarchy (17-Oct-2026), in four connected panels. Try Omarchy grows up, Snapdragon video decoding, iPhone clipboard sharing, and my skills needed fewer words. Swipe through The Daily Panorama.",
+  "sources": [
+    {
+      "id": "try-1",
+      "title": "Try Omarchy 1.0.0 release",
+      "url": "https://github.com/omacom/try-omarchy/releases/tag/v1.0.0",
+      "verification": "checked",
+      "note": "Published 17 October; checked 18 October 2026. Official image/mirror, in-guest updates, import path and dev guest channel."
+    },
+    {
+      "id": "try-patch",
+      "title": "Try Omarchy 1.0.1 patch",
+      "url": "https://github.com/omacom/try-omarchy/releases/tag/v1.0.1",
+      "verification": "checked",
+      "note": "Published 17 October; checked 18 October 2026. Nested virtualisation disabled by default to avoid M3+ issues."
+    },
+    {
+      "id": "video",
+      "title": "Snapdragon decoding PR #15697",
+      "url": "https://github.com/omacom/omarchy/pull/15697",
+      "verification": "checked",
+      "note": "Merged 17 October 2026 into development. Measurements attributed to contributor on Yoga Slim 7x. Checked 18 October."
+    },
+    {
+      "id": "clipboard",
+      "title": "iPhone Clipboard repository",
+      "url": "https://github.com/Unayung/omarchy-iphone-clipboard",
+      "verification": "checked",
+      "note": "README checked 18 October 2026 for Tailscale, Back Tap and token implications. Current README had evolved; marketplace joining date not independently verified and omitted."
+    },
+    {
+      "id": "plugins",
+      "title": "Build Omarchy Plugins 0.9.0",
+      "url": "https://github.com/tcballard/build-omarchy-plugins/releases/tag/v0.9.0",
+      "verification": "checked",
+      "note": "Published 17 October; checked 18 October 2026. 58% reduction and live-desktop validation limits."
+    },
+    {
+      "id": "themes",
+      "title": "Build Omarchy Themes 0.4.0",
+      "url": "https://github.com/tcballard/build-omarchy-themes/releases/tag/v0.4.0",
+      "verification": "checked",
+      "note": "Published 17 October; checked 18 October 2026. About 28% shorter, community colour feedback, full desktop acceptance outstanding."
+    }
+  ],
+  "panels": [
+    {
+      "storyId": "try-omarchy",
+      "emoji": "💻",
+      "headline": "Try Omarchy grows up",
+      "sourceHeadline": "Try Omarchy grows up",
+      "headlineLines": [
+        "Try Omarchy",
+        "grows up"
+      ],
+      "status": "RELEASED · VM USES DEV",
+      "paragraphs": [
+        "Try Omarchy 1.0 uses the official Omarchy M image and ARM package mirror. Updates now happen inside the guest, with an import path for files from your previous VM.",
+        "It’s still a VM running the development channel. The 1.0.1 patch disables nested virtualisation by default on M3+ Macs."
+      ],
+      "sourceIds": [
+        "try-1",
+        "try-patch"
+      ]
+    },
+    {
+      "storyId": "video-decoding",
+      "emoji": "🎬",
+      "headline": "Let the video chip do the video",
+      "sourceHeadline": "Let the video chip do the video",
+      "headlineLines": [
+        "Let the video chip",
+        "do the video"
+      ],
+      "status": "MERGED INTO DEVELOPMENT",
+      "paragraphs": [
+        "A Snapdragon change enables hardware video decoding in mpv and Chromium.",
+        "The contributor reports roughly a fifth of the CPU use for 1080p playback in mpv on a Yoga Slim 7x. Software fallback remains.",
+        "Useful progress, not a stable-release claim or a promise for every ARM laptop."
+      ],
+      "sourceIds": [
+        "video"
+      ]
+    },
+    {
+      "storyId": "iphone-clipboard",
+      "emoji": "📱",
+      "headline": "Copy on iPhone, paste on Omarchy",
+      "sourceHeadline": "Copy on iPhone, paste on Omarchy",
+      "headlineLines": [
+        "Copy on iPhone,",
+        "paste on Omarchy"
+      ],
+      "status": "COMMUNITY PLUGIN",
+      "paragraphs": [
+        "Unayung’s iPhone Clipboard connects your phone and computer over Tailscale. iOS Back Tap sends or fetches the clipboard.",
+        "Setup includes the service and shortcuts. Anyone with the token and access over your tailnet can read and replace your clipboard.",
+        "One less reason to message yourself a URL."
+      ],
+      "sourceIds": [
+        "clipboard"
+      ]
+    },
+    {
+      "storyId": "authoring-skills",
+      "emoji": "🛠️",
+      "headline": "My skills needed fewer words",
+      "sourceHeadline": "My skills needed fewer words",
+      "headlineLines": [
+        "My skills needed",
+        "fewer words"
+      ],
+      "status": "PLUGINS 0.9.0 · THEMES 0.4.0",
+      "paragraphs": [
+        "I cut the plugin skill entry points by 58% and the theme instructions by about 28%. Detailed mechanics stay in linked references.",
+        "Community feedback now informs more deliberate application colours. Personal tweaks can stay personal.",
+        "Full live-desktop acceptance is outstanding."
+      ],
+      "sourceIds": [
+        "plugins",
+        "themes"
+      ]
+    }
+  ]
+}
