@@ -2,11 +2,19 @@
 
 ## Evidence status
 
-Checked 19 October 2026 against official default-branch head `862a1235ca4d743cc48211309ebbbcc1a5a540a3` (17 October, 00:44:30 UTC). Home-mixer defaults header synchronized 16 October, 16:00:32 UTC. Compared with the saved 9 October baseline `cb45b5501423126adfc508052116c2d67c0e3fec` across all five subsequent published commits.
+Code reviewed 19 October 2026 at then-current official default-branch head `862a1235ca4d743cc48211309ebbbcc1a5a540a3` (17 October, 00:44:30 UTC). Home-mixer defaults header synchronized 16 October, 16:00:32 UTC. Compared with the saved 9 October baseline `cb45b5501423126adfc508052116c2d67c0e3fec` across all five subsequent published commits. Public-statement addendum checked 20 October 2026 below. The upstream head resolved on 20 October to `74d49a4ffb398949a5f9312f828d7112d7d31f00` (04:32:20 UTC); that newer code has not been reviewed here, so the code snapshot and defaults below remain pinned to 17 October.
 
 Scope: complete 266-path change inventory, with targeted static inspection of both scoring-default sets and their consumers, retrieval targets, reply and zero-favorite-source filters, post-engager features, video-carousel selection, topic diversity gating, model outputs and the official explanation. Cold-start, age, DPP implementation and reply-spam paths were checked for changes. Broader Phoenix training, visibility and enforcement work was classified without a full behavioral-equivalence audit. This is not a full audit of every upstream change. The official explanation says defaults are synchronized to primary production values, but publication does not prove deployment timing, experiment allocation or exact per-request configuration. Some dependencies, prompts, weights and anti-abuse internals are unavailable. Other surfaces can behave differently.
 
 Distinguish **published mechanism** (source-backed behavior and defaults), **editorial judgment** (a writing choice), and **hypothesis to test** (an unverified performance explanation). Do not present an inference as an algorithm rule.
+
+### Public statement: 20 October 2026
+
+[Elon Musk's announcement](https://x.com/elonmusk/status/2112373713937084809) describes two timeline changes: a ranking model with improved prediction of time spent, and retrieval training aimed at selecting posts readers finish. Treat these as attributed rollout claims. They are directionally consistent with the saved dwell-related source evidence, but do not identify deployed checkpoints, coefficients, experiments, or a measured definition of reading completion. Do not equate the published binary dwell target with a verified full-read detector. The post also claims record growth in active seconds; no independently checked metrics or causal comparison are supplied here.
+
+Editorial implication: earn attention through a clear premise, concrete substance and a satisfying payoff. Test reading retention when suitable measurements exist; impressions and likes alone do not measure completion. Let the material determine length. This statement supplies no universal length advantage, linear reward for more words, reason to abandon video, or guaranteed reach uplift.
+
+Access note: direct X retrieval was blocked. The search-indexed original and an [archived transcription](https://elonmuskarchive.org/posts/2112373713937084809) supplied the text; the attached chart was not independently inspected. This addendum does not refresh the code audit.
 
 ## Published mechanisms
 
