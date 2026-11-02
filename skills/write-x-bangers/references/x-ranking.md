@@ -2,19 +2,17 @@
 
 ## Evidence status
 
-Checked 26 October 2026 against official default-branch head `6258a1549ef808be88fba83d3b2d58364b587ee0` (24 October, 03:22:45 UTC). Home-mixer defaults header synchronized 23 October, 16:00:34 UTC. Compared with the saved 20 October baseline `74d49a4ffb398949a5f9312f828d7112d7d31f00` across four subsequent published commits. Earlier findings are retained below as previous updates. Public-statement evidence is attributed separately.
+Checked 2 November 2026 against official default-branch head `9106e9f33ee9cc6a92929fc798ae6c566e2841cb` (31 October, 02:25:48 UTC). Home-mixer defaults header synchronized 30 October, 22:59:56 UTC. Compared with the saved 26 October baseline `6258a1549ef808be88fba83d3b2d58364b587ee0` across five subsequent published commits. Earlier findings are retained below as previous updates. Official explanatory claims are attributed separately.
 
-Scope: complete 275-path change inventory, with targeted static inspection of scoring-default differences, pre-score source allocation, Phoenix retrieval weights and request context, recent-search hydration, new-user safety filtering, carousel routing, and the affected candidate pipelines. Both scoring-default sets, shared scoring, the combined retrieval configuration, cold-start, out-of-network reply and zero-favorite-source filters were checked for changes. Broader Phoenix performance/training, visibility and enforcement work was classified without a full behavioral-equivalence audit. This is not a full audit of every upstream change. The official explanation says defaults are synchronized to primary production values, but publication does not prove deployment timing, experiment allocation or exact per-request configuration. Some dependencies, prompts, weights and anti-abuse internals are unavailable. Other surfaces can behave differently.
+Scope: complete 311-path change inventory from two untruncated Git trees (the compare endpoint returned only 300 files), with targeted static inspection of both scoring-default sets, shared scoring, user-debias and page-reranking gates, retrieval configuration, new-user safety filtering, carousel scoring and affected pipelines. Cold-start, out-of-network reply, fair-share and zero-favorite-source filters were checked for changes. Broader Phoenix performance/training, visibility and enforcement work was classified without a full behavioral-equivalence audit. This is not a full audit of every upstream change. The official explanation says defaults are synchronized to primary production values, but publication does not prove deployment timing, experiment allocation or exact per-request configuration. Some dependencies, prompts, weights and anti-abuse internals are unavailable. Other surfaces can behave differently.
 
 Distinguish **published mechanism** (source-backed behavior and defaults), **editorial judgment** (a writing choice), and **hypothesis to test** (an unverified performance explanation). Do not present an inference as an algorithm rule.
 
-### Public statement: 20 October 2026
+### Official explanation: reading-related updates
 
-[Elon Musk's announcement](https://x.com/elonmusk/status/2112373713937084809) describes two timeline changes: a ranking model with improved prediction of time spent, and retrieval training aimed at selecting posts readers finish. Treat these as attributed rollout claims. They are directionally consistent with the saved dwell-related source evidence, but do not identify deployed checkpoints, coefficients, experiments, or a measured definition of reading completion. Do not equate the published binary dwell target with a verified full-read detector. The post also claims record growth in active seconds; no independently checked metrics or causal comparison are supplied here.
+The [official repository explanation](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/README.md#notable-updates) now dates improved ranking prediction of time spent to 8 October and retrieval training for posts people finish reading to 13 October. These entries were added after the saved snapshot; they explain earlier work, not a newly discovered late-October deployment. This supplies direct primary-source support for the reading-related claims previously recorded from the 20 October public announcement. It does not identify deployed checkpoints, coefficients, experiment allocation or a measured definition of reading completion. Do not equate the published binary dwell target with a verified full-read detector.
 
-Editorial implication: earn attention through a clear premise, concrete substance and a satisfying payoff. Test reading retention when suitable measurements exist; impressions and likes alone do not measure completion. Let the material determine length. This statement supplies no universal length advantage, linear reward for more words, reason to abandon video, or guaranteed reach uplift.
-
-Access note: direct X retrieval was blocked. The search-indexed original and an [archived transcription](https://elonmuskarchive.org/posts/2112373713937084809) supplied the text; the attached chart was not independently inspected. The statement is not a substitute for source inspection.
+Editorial implication: earn attention through a clear premise, concrete substance and a satisfying payoff. Test reading retention when suitable measurements exist; impressions and likes alone do not measure completion. Let the material determine length. This explanation supplies no universal length advantage, linear reward for more words, reason to abandon video, or guaranteed reach uplift.
 
 ## Published mechanisms
 
@@ -51,7 +49,7 @@ Selected published defaults, separated by consumer. Home Mixer uses its values f
 
 These multiply predictions, not engagement counts. Different probabilities, units and normalization prevent equivalences such as “one report cancels 468 likes.” Binary dwell, continuous dwell and click-dwell outputs are distinct; do not assume every dwell field measures seconds.
 
-Other relevant defaults shared by both parameter files: profile click `0.0`, photo expand `0.05`, qualified video view `0.0`, continuous click dwell `0.4`, and the new react-with-video term `0.0`. The scorer applies the `click_dwell_time` output directly with this weight; the field name does not establish seconds or a linear reward for extra text. The inspected training configuration defines a binary click-dwell head with threshold `10.0` and a configurable loss weight whose fallback is zero; exact deployed training settings are unknown. Video-continuation, viewer-video-continuation and profile-visit-seconds outputs are present, but Home Mixer wires all three at weight `0.0`, matching the service defaults. Profile visits can still be useful conversion steps; they are not equivalent to the direct follow coefficient. Bookmarks and show-more appear in the action taxonomy but have no dedicated term in the inspected shared weighted formula. Separate immersive page-RL training/decoding code includes other objectives; do not relabel those settings as ordinary For You defaults. No universal media multiplier or link-placement penalty follows.
+Other relevant defaults shared by both parameter files: profile click `0.0`, photo expand `0.05`, qualified video view `0.0`, continuous click dwell `0.4`, and the `post_video` term `0.0` (renamed from `react_with_video` in this update). The scorer applies the `click_dwell_time` output directly with this weight; the field name does not establish seconds or a linear reward for extra text. The inspected training configuration defines a binary click-dwell head with threshold `10.0` and a configurable loss weight whose fallback is zero; exact deployed training settings are unknown. Video-continuation, viewer-video-continuation and profile-visit-seconds outputs are present, but Home Mixer wires all three at weight `0.0`, matching the service defaults. Profile visits can still be useful conversion steps; they are not equivalent to the direct follow coefficient. Bookmarks and show-more appear in the action taxonomy but have no dedicated term in the inspected shared weighted formula. Separate page-RL training/decoding code includes other objectives; new Home Mixer page reranking and exploration are both default-off, as detailed below. Do not relabel experimental settings as ordinary For You defaults. No universal media multiplier or link-placement penalty follows.
 
 ### Relationships, diversity and eligibility
 
@@ -63,10 +61,19 @@ Other relevant defaults shared by both parameter files: profile click `0.0`, pho
 - By default, the inspected For You filter excludes candidates marked as out-of-network replies/reposts. A default-off flag can retain standard or cold Phoenix Home-retrieved out-of-network replies after ancestor hydration; a second default-off flag can restrict that exception to replies directly to the conversation root. Out-of-network reposts remain filtered. This does not prove live allocation, make replies universally discoverable or establish a reply tactic. Self-contained original posts can serve discovery, while replies serve real conversation. Deduplication means thread parts are not independent guaranteed reach opportunities.
 - The general For You age filter retains a 48-hour maximum. Author cold-start defaults require a post no older than two hours, an author with at most 50,000 followers, and fewer than 200 Home impressions, plus original-post, viewer/author-arm and pool-position conditions. Thompson sampling is enabled: favorites and Home views inform sampled selection, followed by scoring among the sampled top candidates. Corpus and arm eligibility can admit control-corpus cold retrieval into the lift, but this does not relax the same follower, age, impression or original-post gates. Topic requests bypass this author cold-start lift. This is a gated exploration path, not a guaranteed boost or 200-impression entitlement. Retrieval/export separately supports HOME_HOT/HOME_COLD pools and a two-hour cold-pool freshness default. The combined two-tower configuration enables split Home checkpoints, while the generic model fallback remains false. These are distinct stages, not a universal post lifespan or optimal posting interval.
 - `PopularPostsSource` remains default-on. It can add up to 500 unseen original posts from a shared list initially built from the most-followed active accounts. The generator considers posts from the previous 24 hours, caps each author at five and orders candidates using age-adjusted views before normal downstream scoring and filtering. This is candidate retrieval, not a promise that raw views, follower count or a particular writing style will rank a post.
-- The vertical-video carousel remains default-off and additionally requires an eligible For You request. It selects three to five non-reply vertical videos using separate video-open and immersive-VQV coefficients (defaults `1.0` and `0.0`). Selection deduplicates by original author, semantic-ID prefix and available video embeddings. Media IDs and available MD5 hashes also prevent repeated videos within the carousel and videos already present in the selected main-feed page; too few distinct candidates suppress the module. These carousel-specific settings are not ordinary post weights, a universal video boost or a posting-frequency rule.
+- The vertical-video carousel remains default-off and additionally requires an eligible For You request. It selects three to five non-reply vertical videos using separate video-open and immersive-VQV coefficients (defaults `1.0` and `0.0`). Additional open-probability × immersive-dwell and existing-weighted-score terms both default to `0.0`. Selection deduplicates by original author, semantic-ID prefix and available video embeddings. Media IDs and available MD5 hashes also prevent repeated videos within the carousel and videos already present in the selected main-feed page; too few distinct candidates suppress the module. These carousel-specific settings are not ordinary post weights, a universal video boost or a posting-frequency rule.
 - A new default-off zero-favorite-source experiment filters candidates retrieved exclusively through `ForYouPhoenixRetrievalZeroFav` according to viewer and author treatment assignment. Its filter tests source metadata, not a candidate's current like count. Do not infer that all zero-like posts are suppressed, that one like unlocks distribution or that this supersedes author cold-start eligibility.
 
-### Changes since the previous saved check: 20–24 October
+### Changes since the previous saved check: 24–31 October
+
+- All 19 numeric action defaults in the table remain unchanged in both consumers. The shared arithmetic renames `react_with_video` to `post_video`, alongside the action enum and transport fields; its weight remains zero. The name alone does not establish a reward for attaching video.
+- VM Ranker adds optional per-viewer probability recentering before recomputing value scores. `UserDebiasEnabled=false` and `UserDebiasAlpha=0.0` are the published defaults. Home Mixer now sends debias inputs by default, but transport does not enable the service adjustment. Missing or stale model artifacts and missing inputs skip it; already-cached weighted scores bypass recentering. This is an experimental adjustment to predictions, not a new engagement-count exchange rate or writing tactic.
+- Home Mixer wires page-decode reranking and page-RL exploration after VM Ranker. Both enable flags default false. When enabled, decoded picks can take the highest score slots; exploration can reorder the top-scored pool, skipping when decoded picks are already present. Default-on page logging is separate from these gates. Do not interpret logged training support as proof that page-level optimization is serving every timeline.
+- The official README now directly explains the earlier time-spent and reading-completion work. The combined two-tower configuration changes training and model settings, but retains the favorite/dwell retrieval mixture. These changes support studying useful reading attention, without prescribing more words, an ideal length or an expected reach uplift.
+- The default-off new-viewer soft-NSFW filter expands its age window from one to seven days and adds a scoring-history-length gate: below 100, or unavailable, with zero disabling that length restriction. The Brazil election filter is removed from the pipeline, consistent with the official 26 October note. These change eligibility in specific contexts, not general copywriting advice.
+- The default-off video carousel gains the two zero-weight terms noted above and further safety/embedding work. Ads blending, Phoenix performance/training and visibility changes were also inspected at the change-inventory level; no full behavioral-equivalence or enforcement audit was performed. None supplies a defensible general organic-copy bonus.
+
+### Previous update: 20–24 October
 
 - Existing Home Mixer and VM Ranker scoring coefficients are unchanged. The shared scoring formula, cold-start scorer, out-of-network reply filter, zero-favorite-source experiment and combined favorite/dwell retrieval configuration also have no relevant changes.
 - The new default-on fair-share filter applies the source-proportional `2800`-candidate budget described above in both the Phoenix candidate and Phoenix-scores pipelines. It is disabled for cached posts, requests without a scoring sequence and Phoenix-ranker kill-switch traffic. This is pre-score capacity allocation, not a topic, length or media bonus.
@@ -108,56 +115,60 @@ Prefer a recognisable subject, an earned payoff and truthful proof. These improv
 
 ## Pinned primary sources
 
-- [Defaults](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/params/param.rs)
-- [Scoring](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/xai-value-model/scoring.rs)
-- [Cold start](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/scorers/author_cold_start.rs)
-- [Out-of-network filter](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/oon_retweet_reply_filter.rs)
-- [Phoenix reply ancestor hydration](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/candidate_hydrators/phoenix_reply_ancestors_hydrator.rs)
-- [Favorite holdout](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/fav_holdout_filter.rs)
-- [Diversity selection](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/vm-ranker/scoring/dpp_model.rs)
-- [Retrieval configuration](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/phoenix/xrex/configs/xrecsys_two_tower.py)
-- [SimClusters source](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/sources/simclusters_source.rs)
-- [Popular-posts source](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/sources/popular_posts_source.rs)
-- [Popular-post selection](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/util/popular_posts.rs)
-- [Video-carousel gating](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/util/video_carousel.rs)
-- [Semantic-ID source](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/sources/sid_source.rs)
-- [Training configuration](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/phoenix/xrex/configs/xrecsys.py)
-- [Model outputs](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/phoenix/xrex/models/recsys_model.py)
-- [History features](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/phoenix/xrex/models/recsys_feature_prep.py)
-- [Reply spam routing](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/grox/flows/reply_spam/task_filter.py)
-- [Reply spam labelling](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/grox/flows/reply_spam/task_write.py)
-- [Publication limitations](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/README.md)
-- [Saved-to-current diff](https://github.com/xai-org/x-algorithm/compare/74d49a4ffb398949a5f9312f828d7112d7d31f00...6258a1549ef808be88fba83d3b2d58364b587ee0)
-- [Service defaults](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/vm-ranker/params.rs)
-- [Service weight resolution](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/vm-ranker/scoring/value_model.rs)
-- [Local weight resolution](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/scorers/value_model.rs)
-- [Scoring request](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/scorers/vm_ranker_request.rs)
-- [Service wiring](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/vm-ranker/scoring/mod.rs)
-- [Local scoring and fallback](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/scorers/vm_ranker.rs)
-- [Cold retrieval metadata and freshness](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/phoenix/xrex/data/cold_pool_filter.py)
-- [Cold-pool configuration](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/phoenix/xrex/models/recsys_two_tower_model.py)
-- [MOE retrieval](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/sources/phoenix_moe_source.rs)
-- [Transparency report schema](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/under-the-hood/jetfuel/routes/_lib/report.ts)
-- [Zero-favorite-source experiment](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/zero_fav_codivert_filter.rs)
-- [Post-engager hydration](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/candidate_hydrators/post_engagers_hydrator.rs)
-- [Post-engager feature filtering](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/util/post_engagers.rs)
-- [Immersive carousel scoring](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/scorers/immersive_video_scorer.rs)
-- [Video-exclusion filter](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/video_filter.rs)
-- [Ancestor-video exclusion](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/ancestor_video_filter.rs)
-- [Immersive page-RL settings](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/phoenix/xrex/models/page_rl.py)
-- [Topic-history extraction](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/util/viewer_history.rs)
-- [Topic-history hydration and window](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/query_hydrators/scoring_sequence_query_hydrator.rs)
-- [Topic-history request transport](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/scorers/vm_ranker_debias_payload.rs)
-- [Serendipity measurements](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/side_effects/serendipity_stats_side_effect.rs)
-- [Video-media identity hydration](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/candidate_hydrators/video_media_hydrator.rs)
-- [Carousel/main-feed selection](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/video_carousel_filter.rs)
-- [Shadow aggregation selection](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/util/shadow.rs)
-- [Shadow prediction storage and logging](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/side_effects/phoenix_experiments_side_effect.rs)
-- [Direct Phoenix retrieval and weight transport](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/sources/phoenix_source.rs)
-- [Prediction dispatch](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/util/egress.rs)
-- [Fair-share pre-score selection](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/fair_share_ranking_filter.rs)
-- [Phoenix candidate pipeline](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/candidate_pipeline/phoenix_candidate_pipeline.rs)
-- [Phoenix scores pipeline](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/candidate_pipeline/phoenix_scores_pipeline.rs)
-- [Recent-search hydration](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/query_hydrators/recent_search_queries_query_hydrator.rs)
-- [Retrieval request and configurable weights](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/util/phoenix_request.rs)
-- [New-user soft-NSFW filter](https://github.com/xai-org/x-algorithm/blob/6258a1549ef808be88fba83d3b2d58364b587ee0/home-mixer/filters/new_user_soft_nsfw_filter.rs)
+- [Defaults](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/params/param.rs)
+- [Scoring](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/xai-value-model/scoring.rs)
+- [Cold start](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/author_cold_start.rs)
+- [Out-of-network filter](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/oon_retweet_reply_filter.rs)
+- [Phoenix reply ancestor hydration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/candidate_hydrators/phoenix_reply_ancestors_hydrator.rs)
+- [Favorite holdout](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/fav_holdout_filter.rs)
+- [Diversity selection](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/vm-ranker/scoring/dpp_model.rs)
+- [Retrieval configuration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/xrex/configs/xrecsys_two_tower.py)
+- [SimClusters source](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/sources/simclusters_source.rs)
+- [Popular-posts source](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/sources/popular_posts_source.rs)
+- [Popular-post selection](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/util/popular_posts.rs)
+- [Video-carousel gating](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/util/video_carousel.rs)
+- [Semantic-ID source](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/sources/sid_source.rs)
+- [Training configuration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/xrex/configs/xrecsys.py)
+- [Model outputs](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/xrex/models/recsys_model.py)
+- [History features](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/xrex/models/recsys_feature_prep.py)
+- [Reply spam routing](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/grox/flows/reply_spam/task_filter.py)
+- [Reply spam labelling](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/grox/flows/reply_spam/task_write.py)
+- [Publication limitations](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/README.md)
+- [Saved-to-current diff](https://github.com/xai-org/x-algorithm/compare/6258a1549ef808be88fba83d3b2d58364b587ee0...9106e9f33ee9cc6a92929fc798ae6c566e2841cb)
+- [Service defaults](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/vm-ranker/params.rs)
+- [Service weight resolution](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/vm-ranker/scoring/value_model.rs)
+- [Local weight resolution](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/value_model.rs)
+- [Scoring request](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/vm_ranker_request.rs)
+- [Service wiring](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/vm-ranker/scoring/mod.rs)
+- [Local scoring and fallback](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/vm_ranker.rs)
+- [Cold retrieval metadata and freshness](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/xrex/data/cold_pool_filter.py)
+- [Cold-pool configuration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/xrex/models/recsys_two_tower_model.py)
+- [MOE retrieval](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/sources/phoenix_moe_source.rs)
+- [Transparency report schema](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/under-the-hood/jetfuel/routes/_lib/report.ts)
+- [Zero-favorite-source experiment](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/zero_fav_codivert_filter.rs)
+- [Post-engager hydration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/candidate_hydrators/post_engagers_hydrator.rs)
+- [Post-engager feature filtering](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/util/post_engagers.rs)
+- [Immersive carousel scoring](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/immersive_video_scorer.rs)
+- [Video-exclusion filter](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/video_filter.rs)
+- [Ancestor-video exclusion](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/ancestor_video_filter.rs)
+- [Immersive page-RL settings](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/xrex/models/page_rl.py)
+- [Topic-history extraction](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/util/viewer_history.rs)
+- [Topic-history hydration and window](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/query_hydrators/scoring_sequence_query_hydrator.rs)
+- [Topic-history request transport](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/vm_ranker_debias_payload.rs)
+- [Serendipity measurements](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/side_effects/serendipity_stats_side_effect.rs)
+- [Video-media identity hydration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/candidate_hydrators/video_media_hydrator.rs)
+- [Carousel/main-feed selection](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/video_carousel_filter.rs)
+- [Shadow aggregation selection](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/util/shadow.rs)
+- [Shadow prediction storage and logging](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/side_effects/phoenix_experiments_side_effect.rs)
+- [Direct Phoenix retrieval and weight transport](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/sources/phoenix_source.rs)
+- [Prediction dispatch](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/util/egress.rs)
+- [Fair-share pre-score selection](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/fair_share_ranking_filter.rs)
+- [Phoenix candidate pipeline](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/candidate_pipeline/phoenix_candidate_pipeline.rs)
+- [Phoenix scores pipeline](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/candidate_pipeline/phoenix_scores_pipeline.rs)
+- [Recent-search hydration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/query_hydrators/recent_search_queries_query_hydrator.rs)
+- [Retrieval request and configurable weights](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/util/phoenix_request.rs)
+- [New-user soft-NSFW filter](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/filters/new_user_soft_nsfw_filter.rs)
+- [User-debias gating and recentering](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/vm-ranker/scoring/debias.rs)
+- [Page-decode reranking](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/page_decode_rerank_scorer.rs)
+- [Page-RL exploration](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/home-mixer/scorers/page_rl_exploration_scorer.rs)
+- [Action names](https://github.com/xai-org/x-algorithm/blob/9106e9f33ee9cc6a92929fc798ae6c566e2841cb/phoenix/python/common/xai-proto/proto/recsys.proto)
