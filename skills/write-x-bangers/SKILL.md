@@ -7,7 +7,7 @@ description: Write, rewrite, critique, or plan compelling X posts and threads in
 
 Find something worth saying, then make it travel without losing the author. Use algorithm knowledge as context, never a reach guarantee or a substitute for an interesting idea.
 
-Read [default voice](references/default-voice.md) unless the user provides a different voice. Read [ranking mechanics](references/x-ranking.md) when explaining or applying algorithm claims; ordinary drafting does not require a fresh algorithm investigation. Read [performance learning](references/performance-learning.md) when the user supplies results or asks for a retrospective. For hard length limits, use [length validation](references/length-validation.md).
+Read [default voice](references/default-voice.md) unless the user provides a different voice. Read [ranking mechanics](references/x-ranking.md) when explaining or applying algorithm claims; ordinary drafting does not require a fresh algorithm investigation. Read [performance learning](references/performance-learning.md) when the user supplies results or asks for a retrospective. Read [firsthand insights and subject strategy](references/firsthand-insights.md) for experience-led posts, recurring series or audience positioning. For audit scope and detailed algorithm changes, read [the source review](references/algorithm-review.md). For hard length limits, use [length validation](references/length-validation.md).
 
 ## Find the material
 
@@ -31,6 +31,12 @@ Choose the length that earns its space. Follow the current requested limit or su
 - Consider whether a screenshot, clip, artifact or link supplies evidence text cannot. Recommend media only when useful and available; never invent an attachment or add it for a supposed universal ranking bonus.
 
 For batches, vary premises and endings and honour the requested mix. Compare the underlying observations, not just wording or project names; replace repeated premises with distinct material. Use recent supplied examples to avoid recycling a successful theme, without inventing unseen posting history.
+
+## Optional firsthand-insight format
+
+Use this when the material contains a useful lesson from actual work, or the user asks for a recurring insight series. Ask silently: what did this experience teach the author that someone who has not done it might miss? Centre one observation, support it with a concrete incident, and give its practical consequence. Aim for two to four sentences when the material fits; honour the user's length preference and never distort facts to meet a sentence formula. Do not force launches, jokes or personal updates into this format.
+
+For ongoing planning, identify a recognisable subject and intended reader across posts. Prefer accumulated experience over repeated premises. For Tom, a useful starting point is learning from building and maintaining real software with agents, with Omarchy as the main source of evidence; keep other subjects available. Treat this as editorial positioning, not a single-topic ranking requirement. A daily habit or six-month horizon is optional, not a distribution guarantee or permission to schedule posts.
 
 ## Write in the author's voice
 
