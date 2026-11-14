@@ -13,9 +13,9 @@
 
 ## Evidence status
 
-Checked 6 November 2026 against official default-branch head `2e2295b0df598eee5aa05f9c9b458f4490c7fcbe` (6 November, 03:48:04 UTC). Home Mixer defaults last synchronized 5 November, 16:00:35 UTC. Reconciled the installed 20 October baseline `74d49a4ffb398949a5f9312f828d7112d7d31f00` and the maintained bundle's newer 26 October review of `6258a1549ef808be88fba83d3b2d58364b587ee0` (24 October source).
+Checked 14 November 2026 against official default-branch head `590f3926e5bc33c50d9ece13953623e1e75ee595` (13 November, 21:42:04 UTC). Home Mixer defaults last synchronized 12 November, 16:00:36 UTC. Installed and maintained copies matched the 6 November review at `2e2295b0df598eee5aa05f9c9b458f4490c7fcbe` before this update.
 
-Reviewed the complete 484-path change inventory over 13 published commits from the installed baseline, and refreshed every guidance category below. The newer bundle-to-head comparison contains 397 paths. See [source review](algorithm-review.md) for coverage and changes. This is a comprehensive refresh of writing guidance using static source inspection, not a line-by-line security audit of all infrastructure or proof of production behavior. Published defaults can be overridden; model checkpoints, some prompts/rules and deployment details are unavailable. No live reach experiment was run.
+Inventoried all 287 changed paths across five commits (24,121 additions, 13,520 deletions) and reviewed guidance-relevant scoring, retrieval, selection, training, filtering and diagnostic changes. See [source review](algorithm-review.md) for coverage and limits. This is a static writing-guidance refresh, not a complete implementation audit or proof of production behavior. Published defaults can be overridden; live checkpoints, experiments and account analytics were unavailable. No reach experiment was run.
 
 Keep **published mechanism**, **editorial judgment** and **hypothesis to test** separate. Do not turn a code change or public statement into an automatic writing rule.
 
@@ -29,7 +29,9 @@ Combined training adds four user query heads, mixture-of-logits components, sema
 
 Home Mixer's ranking-history default is now `DENSE_WITH_LONG_DWELL_HOME_EXCURSION`; `EnableHomeExcursionScores=true` transports video-continuation and profile-visit predictions. The Home training configuration enables time-gap and excursion-history features and gives the corresponding losses nonzero weights. That is not a verified full-read detector or a new direct profile-click bonus. Local excursion score weights remain zero, as do the service defaults.
 
-Recent-search embeddings can enter request context behind `EnableRecentSearchQueriesHydration=false`, or on shadow traffic. The hydrator keeps up to 16 valid, prior-to-request embeddings and clears query text. Post-engager features remain gated by `EnablePostEngagers=false` or shadow traffic. Topic-history extraction and transport remain independently default-off (`HistoryTopicsEnabled`, `VMRankerSendHistoryTopics`), with a 28-day window. Language and topic novelty measurements are diagnostics, not demonstrated novelty or language bonuses.
+Recent-search embeddings can enter request context behind `EnableRecentSearchQueriesHydration=false`, or on shadow traffic. The hydrator keeps up to 16 valid, prior-to-request embeddings and clears query text. Post-engager features remain gated by `EnablePostEngagers=false` or shadow traffic. Topic-history extraction and transport remain independently default-off (`HistoryTopicsEnabled`, `VMRankerSendHistoryTopics`), with a 28-day window. Language and topic novelty measurements are diagnostics, not demonstrated novelty or language bonuses. New recent-view and candidate-topic transport is gated by `VMRankerSendPostTopics=false`; it can attach recent views and topics for up to 200 locally highest-scored candidates. Transport alone does not establish a deployed topic reward or a mandatory niche.
+
+The Phoenix model adds optional scaling/dropout of recent positive history. Defaults are scale `1.0` and dropout `0.0`, leaving this adjustment inactive; training and inference paths exist. Ad-side ID features, data loaders, embeddings and serving transport also change. These are model/infrastructure evidence, not an early-engagement timing recipe or proof of the deployed checkpoint. Rankall adds self-declared/detected AI-video indexes and model-labelled AI-video indexing, with NSFW-index exclusion on configured self/detected windows. This is candidate indexing, not evidence that AI-written text or all generated images are suppressed.
 
 ## Scoring and published defaults
 
@@ -42,7 +44,7 @@ Phoenix predicts viewer-specific actions and continuous outputs. Home Mixer comp
 | Repost | 1.0 | 1.0 |
 | Share | 2.118 | 2.0 |
 | Share by DM | 5.0 | 5.0 |
-| Share by copied link | 20.0 | 20.0 |
+| Share by copied link | 0.0 | 20.0 |
 | Dwell | 0.05 | 0.05 |
 | Quote | 5.0 | 5.0 |
 | Follow author | 4.0 | 4.0 |
@@ -60,6 +62,8 @@ Phoenix predicts viewer-specific actions and continuous outputs. Home Mixer comp
 
 Both consumers retain photo expansion `0.05`, quoted click `0.05`, profile click `0.0`, qualified video view `0.0`, and quoted qualified video view `0.0`. Shared scoring now names `post_video` (replacing `react_with_video`) and adds `grok_analyze`; both weights default to zero in both consumers. Their existence does not justify soliciting Grok interactions or promising a video bonus. Bookmarks and show-more are action-taxonomy entries, not dedicated terms in this shared weighted formula.
 
+Since 6 November, Home Mixer’s copied-link default changed from `20.0` to `0.0`; VM Ranker remains `20.0`. The local weight is consumed by local scoring, while the service resolves its own weights. This is not removal of all sharing signals, a penalty for putting an external URL in a post, or evidence explaining a particular account’s reach.
+
 Weights multiply predictions, not observed engagement counts. Probabilities, continuous-output normalization and baseline rates differ. Never say one report cancels a certain number of likes, or infer a reach percentage from a coefficient change.
 
 Binary dwell, dwell-time and click-dwell are distinct. The training configuration defines a binary click-dwell target with threshold `10.0`; its generic loss-weight fallback is zero, but `home_direct_packed` inherits `click_dwell_loss_weight=1.0`. CREAD dwell losses and normalization settings differ by surface; do not assume every field is raw seconds or that more words earn a linear reward. These configuration values do not identify live checkpoints or measure reading completion.
@@ -70,11 +74,12 @@ Binary dwell, dwell-time and click-dwell are distinct. The training configuratio
 - **Mutual follows:** eligible mutual-follow original candidates receive an additive `15.0` on the base reply weight `5.0`; the condition excludes replies and reposts. This is not a 15× boost to replies. Mutual-follow dwell boost defaults to zero.
 - **Out-of-network:** ordinary service factor `0.75`; topic requests resolve `0.5`. In-network reply/repost rescoring is enabled and also uses the effective factor. The special new-viewer branch has an age threshold of zero by default. These are context-dependent adjustments, not guarantees.
 - **Author diversity:** enabled service defaults apply `0.25 + 0.75 × 0.5^k` to successive same-author candidates in a score-ordered pool. The sequence starts `1, 0.625, 0.4375, 0.34375`. This is not a daily quota, posting timer or literal repeated halving.
-- **DPP:** selects an embedding-diverse subset, retaining selected scores and assigning zero to unselected ones. It is not just adjacent-post rearrangement. Service defaults enable DPP but disable it for topic requests; absent resolved parameters still permit it when a DPP context exists. Zero scores alone do not prove removal in every downstream route.
+- **DPP:** selects an embedding-diverse subset and assigns zero to unselected ones. With the published defaults it retains selected scores. New `DppGreedyOrder=false` can instead reassign selected scores to greedy order; `DppWindow=0` disables a new sliding-history window and `VMRankerSendDppHistory=false` disables Home history transport. When enabled, the service history path considers recent served items up to ten minutes old. These optional paths do not establish a live repetition penalty, posting interval or need to change topics. Service defaults enable DPP but disable it for topic requests; absent resolved parameters still permit it when a DPP context exists. Zero scores alone do not prove removal in every downstream route.
 - **Replies and threads:** the inspected For You filter excludes candidates marked out-of-network replies/reposts by default. Standard/cold Phoenix Home replies can be excepted behind default-off flags, including an optional root-only condition; ancestors must exist. The new partition helper preserves these predicates. Replies remain useful conversation, but neither replies nor thread parts guarantee independent discovery.
 - **Age and cold start:** general For You maximum remains 48 hours. Author cold-start gates retain original posts no older than two hours, at most 50,000 author followers and fewer than 200 Home impressions, plus arm/corpus and pool-position conditions. Thompson sampling uses favorites and Home views before score-based selection among sampled candidates. Topic requests skip this lift. No 200-impression entitlement, universal post lifespan or six-month posting reward follows.
 - **Popular retrieval:** default-on; up to 500 unseen originals from a shared list initially drawn from most-followed active accounts. Generation considers the prior 24 hours, caps each author at five and uses age-adjusted views. Ordinary downstream scoring/filtering still applies.
 - **Zero-favorite source:** the default-off experiment identifies exclusive retrieval-source metadata, not all posts with zero current likes. One like is not a verified distribution unlock.
+- **New-viewer engagement filter:** `NewUserMinEngagementFilterUseRatio` changed to `true` and threshold to `0.004`, but the parent `EnableNewUserMinEngagementFilter` remains `false`. It tests out-of-network candidates for eligible new/resurrected viewers, not whether the author is new. Do not turn this into an engagement-rate target or distribution unlock.
 - **Visibility:** blocked/muted relationships, seen/served history, subscription access, media exclusions, safety labels and conversation deduplication can remove otherwise high-scoring candidates. The new-viewer soft-NSFW filter is default-off and excludes topic requests. The standalone Brazil election filter was removed; separate legal-label rules still exist, so do not infer repeal of all restrictions.
 
 ## Experiments, safety and diagnostics
@@ -83,13 +88,13 @@ Binary dwell, dwell-time and click-dwell are distinct. The training configuratio
 
 **User debiasing:** Home Mixer now sends debias inputs by default on fresh requests and eligible diagnostic requests, but service `UserDebiasEnabled=false` and alpha `0.0`. Recentering needs a usable, fresh model artifact and valid sequence. Ordinary cached weighted requests skip it; diagnostic top-head computation can differ from cached served scores. Transport being on does not prove correction is active.
 
-**Video carousel:** still default-off, eligible For You only, and now excludes bottom requests. It selects three to five distinct vertical non-reply videos. Video-open weight remains `1.0`; immersive-VQV, open-times-immersive-dwell, weighted-score and video-continuation terms default to zero. A separately default-off CTR model can replace this scoring when loaded. A separately default-off seen-video filter reads a three-day history. Author/semantic/embedding/media deduplication remains; a default-on high-risk gate within the carousel also rejects missing brand-safety verdicts. These are module-specific rules, not a universal video boost or penalty.
+**Video carousel:** still default-off, eligible For You only, and now excludes bottom requests. It selects three to five distinct vertical non-reply videos. Video-open weight remains `1.0`; immersive-VQV, open-times-immersive-dwell, weighted-score and video-continuation terms default to zero. A separately default-off CTR model can replace this scoring when loaded. The seen-video filter is now default-on inside the carousel and reads a three-day history. The medium-risk filter is also now default-on inside the module; the parent carousel remains default-off. The CTR model name is now populated, but its separate enable switch remains false. Author/semantic/embedding/media deduplication remains; a default-on high-risk gate within the carousel also rejects missing brand-safety verdicts. New `EnableVideoCarouselTakeFromFeed=false` optionally takes selected videos from the main feed; `VideoCarouselNotInterestedWeight=0.0` adds an inactive scoring term. These are module-specific rules, not a universal video boost or penalty.
 
 **Abuse and AI-related labels:** the published user-enforcement rules already mapped `llm_slop_user` to `SpamHighRecall`; this interval changes its configured TTL from 30 days to seven days. Earlier skip/credibility checks and existing labels can alter handling. The underlying classifier prompts and complete criteria are not public. This supports acknowledging a specific enforcement path, not claiming all AI-assisted writing is penalized or recommending detection-evasion tricks. Spam bot, liveness and impersonation handling also changed. Some credibility thresholds are explicitly mock values. Never treat thresholds as safe operating limits.
 
-**Surface-specific safety:** visibility code adds reaction-video propagation, follower conversation controls, geo-restricted media handling in Home paths, and notification-specific rules including risky high-visibility replies. A notification rule is not automatically a For You ranking rule. Large rule-engine/hydration refactors were reviewed for scope, not proven behaviorally equivalent end to end.
+**Surface-specific safety:** the earlier review documented that visibility code adds reaction-video propagation, follower conversation controls, geo-restricted media handling in Home paths, and notification-specific rules including risky high-visibility replies. A notification rule is not automatically a For You ranking rule. In this interval, `DoNotAmplify` and `MaliciousUrl` rule audiences change from non-authors to non-followers; a non-follower spam-high-recall rule is used in notification lists. Multi-media safety processing and label-write deduplication also change. None establishes a blanket penalty on AI-assisted writing, links or image carousels. Large rule-engine/hydration refactors were reviewed for scope, not proven behaviorally equivalent end to end.
 
-**Diagnostics:** Under the Hood now has code for pipeline-stage traces and up to three largest absolute weighted-head contributions, each requiring at least a 10% absolute share. The trace page is feature-gated. These explain particular request stages or score components when available; they do not establish causal reasons for total account reach. Aggregate label reports remain distinct. Do not assume access, treat absent labels as unrestricted distribution, or require a report for ordinary drafting.
+**Diagnostics:** Under the Hood now has code for pipeline-stage traces and up to three largest absolute weighted-head contributions, each requiring at least a 10% absolute share. The trace page is feature-gated. New trace-frame delivery is additionally gated by `EnableUnderTheHoodFrame=false`. Cross-page/session diversity measurements are expanded; they are diagnostics, not new score weights. These explain particular request stages or score components when available; they do not establish causal reasons for total account reach. Aggregate label reports remain distinct. Do not assume access, treat absent labels as unrestricted distribution, or require a report for ordinary drafting.
 
 ## Editorial implications and public statements
 
@@ -117,48 +122,59 @@ Historical corrections: the September 9 note overstated consistency with August:
 
 ## Pinned primary sources
 
-- [Publication and limits](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/README.md)
-- [Home defaults](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/params/param.rs)
-- [Service defaults](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/vm-ranker/params.rs)
-- [Shared scoring](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/xai-value-model/scoring.rs)
-- [Shared weights](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/xai-value-model/weights.rs)
-- [Local scoring](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/scorers/value_model.rs)
-- [Local fallback](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/scorers/vm_ranker.rs)
-- [Rank request](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/scorers/vm_ranker_request.rs)
-- [Service resolution](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/vm-ranker/scoring/value_model.rs)
-- [Service wiring](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/vm-ranker/scoring/mod.rs)
-- [DPP](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/vm-ranker/scoring/dpp_model.rs)
-- [Debiasing](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/vm-ranker/scoring/debias.rs)
-- [Cold start](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/scorers/author_cold_start.rs)
-- [Fair share](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/filters/fair_share_ranking_filter.rs)
-- [Replies](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/filters/oon_retweet_reply_filter.rs)
-- [Retrieval](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/sources/phoenix_source.rs)
-- [Retrieval configuration](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/phoenix/xrex/configs/xrecsys_two_tower.py)
-- [Retrieval model](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/phoenix/xrex/models/recsys_two_tower_model.py)
-- [Cold pools](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/phoenix/xrex/data/cold_pool_filter.py)
-- [Training configuration](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/phoenix/xrex/configs/xrecsys.py)
-- [Model outputs](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/phoenix/xrex/models/recsys_model.py)
-- [Feature preparation](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/phoenix/xrex/models/recsys_feature_prep.py)
-- [Prediction transport](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/scorers/phoenix_scorer.rs)
-- [Search hydration](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/query_hydrators/recent_search_queries_query_hydrator.rs)
-- [Post engagers](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/candidate_hydrators/post_engagers_hydrator.rs)
-- [Topic/language history](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/util/viewer_history.rs)
-- [Serendipity metrics](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/side_effects/serendipity_stats_side_effect.rs)
-- [Popular source](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/sources/popular_posts_source.rs)
-- [Popular selection](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/util/popular_posts.rs)
-- [Zero-favorite source](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/filters/zero_fav_codivert_filter.rs)
-- [Page decode](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/scorers/page_decode_rerank_scorer.rs)
-- [Page exploration](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/scorers/page_rl_exploration_scorer.rs)
-- [Carousel](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/util/video_carousel.rs)
-- [Carousel safety](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/filters/video_carousel_filter.rs)
-- [Carousel seen history](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/query_hydrators/video_carousel_seen_query_hydrator.rs)
-- [New viewer filter](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/filters/new_user_soft_nsfw_filter.rs)
-- [User enforcement](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/abuse-enforcement-service/service-lib/rules/enforcement_user.yaml)
-- [Post enforcement](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/abuse-enforcement-service/service-lib/rules/enforcement_post.yaml)
-- [Safety surfaces](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/visibility-filtering/rules/levels.rs)
-- [Post rules](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/visibility-filtering/rules/tweet_rules.rs)
-- [Author rules](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/visibility-filtering/rules/author_rules.rs)
-- [Diagnostics](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/home-mixer/util/under_the_hood.rs)
-- [Trace page](https://github.com/xai-org/x-algorithm/blob/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe/under-the-hood/jetfuel/routes/trace.tsx)
+- [Publication and limits](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/README.md)
+- [Home defaults](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/params/param.rs)
+- [Service defaults](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/vm-ranker/params.rs)
+- [Shared scoring](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/xai-value-model/scoring.rs)
+- [Shared weights](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/xai-value-model/weights.rs)
+- [Local scoring](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/scorers/value_model.rs)
+- [Local fallback](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/scorers/vm_ranker.rs)
+- [Rank request](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/scorers/vm_ranker_request.rs)
+- [Service resolution](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/vm-ranker/scoring/value_model.rs)
+- [Service wiring](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/vm-ranker/scoring/mod.rs)
+- [DPP](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/vm-ranker/scoring/dpp_model.rs)
+- [Debiasing](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/vm-ranker/scoring/debias.rs)
+- [Cold start](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/scorers/author_cold_start.rs)
+- [Fair share](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/filters/fair_share_ranking_filter.rs)
+- [Replies](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/filters/oon_retweet_reply_filter.rs)
+- [Retrieval](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/sources/phoenix_source.rs)
+- [Retrieval configuration](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix/xrex/configs/xrecsys_two_tower.py)
+- [Retrieval model](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix/xrex/models/recsys_two_tower_model.py)
+- [Cold pools](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix/xrex/data/cold_pool_filter.py)
+- [Training configuration](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix/xrex/configs/xrecsys.py)
+- [Model outputs](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix/xrex/models/recsys_model.py)
+- [Feature preparation](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix/xrex/models/recsys_feature_prep.py)
+- [Prediction transport](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/scorers/phoenix_scorer.rs)
+- [Search hydration](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/query_hydrators/recent_search_queries_query_hydrator.rs)
+- [Post engagers](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/candidate_hydrators/post_engagers_hydrator.rs)
+- [Topic/language history](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/util/viewer_history.rs)
+- [Serendipity metrics](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/side_effects/serendipity_stats_side_effect.rs)
+- [Popular source](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/sources/popular_posts_source.rs)
+- [Popular selection](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/util/popular_posts.rs)
+- [Zero-favorite source](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/filters/zero_fav_codivert_filter.rs)
+- [Page decode](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/scorers/page_decode_rerank_scorer.rs)
+- [Page exploration](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/scorers/page_rl_exploration_scorer.rs)
+- [Carousel](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/util/video_carousel.rs)
+- [Carousel safety](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/filters/video_carousel_filter.rs)
+- [Carousel seen history](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/query_hydrators/video_carousel_seen_query_hydrator.rs)
+- [New viewer filter](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/filters/new_user_soft_nsfw_filter.rs)
+- [User enforcement](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/abuse-enforcement-service/service-lib/rules/enforcement_user.yaml)
+- [Post enforcement](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/abuse-enforcement-service/service-lib/rules/enforcement_post.yaml)
+- [Safety surfaces](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/visibility-filtering/rules/levels.rs)
+- [Post rules](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/visibility-filtering/rules/tweet_rules.rs)
+- [Author rules](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/visibility-filtering/rules/author_rules.rs)
+- [Diagnostics](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/util/under_the_hood.rs)
+- [Trace page](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/under-the-hood/jetfuel/routes/trace.tsx)
 - [Full installed-baseline comparison](https://github.com/xai-org/x-algorithm/compare/74d49a4ffb398949a5f9312f828d7112d7d31f00...2e2295b0df598eee5aa05f9c9b458f4490c7fcbe)
 - [Maintained-bundle comparison](https://github.com/xai-org/x-algorithm/compare/6258a1549ef808be88fba83d3b2d58364b587ee0...2e2295b0df598eee5aa05f9c9b458f4490c7fcbe)
+
+- [Current review comparison](https://github.com/xai-org/x-algorithm/compare/2e2295b0df598eee5aa05f9c9b458f4490c7fcbe...590f3926e5bc33c50d9ece13953623e1e75ee595)
+- [DPP selection implementation](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/vm-ranker/dpp.rs)
+- [Recent views](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/query_hydrators/recent_views_query_hydrator.rs)
+- [Post topic annotations](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/util/post_annotations.rs)
+- [New-viewer engagement filter](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/filters/new_user_min_engagement_filter.rs)
+- [Cross-page diagnostics](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/home-mixer/side_effects/response_diversity_stats_side_effect.rs)
+- [Multi-media safety](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/grox/flows/ptos/task_safety_ptos_many_media.py)
+- [Label deduplication](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/abuse-enforcement-service/service-lib/src/post_labels.rs)
+- [AI-video indexing](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix-rankall-strato/columns/phoenix_rank_all/phoenixRankAllCandidateProcessor.strato)
+- [AI-video index windows](https://github.com/xai-org/x-algorithm/blob/590f3926e5bc33c50d9ece13953623e1e75ee595/phoenix-rankall/src/config/mod.rs)
