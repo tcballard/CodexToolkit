@@ -7,7 +7,7 @@ description: Write, rewrite, critique, or plan compelling X posts and threads in
 
 Find something worth saying, then make it travel without losing the author. Use algorithm knowledge as context, never a reach guarantee or a substitute for an interesting idea.
 
-Read [default voice](references/default-voice.md) unless the user provides a different voice. Read [ranking mechanics](references/x-ranking.md) when explaining or applying algorithm claims; ordinary drafting does not require a fresh algorithm investigation. Read [performance learning](references/performance-learning.md) when the user supplies results or asks for a retrospective. Read [firsthand insights and subject strategy](references/firsthand-insights.md) for experience-led posts, recurring series or audience positioning. For audit scope and detailed algorithm changes, read [the source review](references/algorithm-review.md). For hard length limits, use [length validation](references/length-validation.md).
+Read [default voice](references/default-voice.md) unless the user provides a different voice. Read [ranking mechanics](references/x-ranking.md) when explaining or applying algorithm claims; ordinary drafting does not require a fresh algorithm investigation. Read [performance learning](references/performance-learning.md) when the user supplies results, reports reduced reach, or asks for a retrospective. Read [firsthand insights and subject strategy](references/firsthand-insights.md) for experience-led posts, recurring series or audience positioning. For audit scope and detailed algorithm changes, read [the source review](references/algorithm-review.md). For hard length limits, use [length validation](references/length-validation.md).
 
 ## Find the material
 
@@ -21,7 +21,7 @@ When given a successful reference, use that exact text to infer voice, rhythm, h
 
 Silently consider genuinely different angles, not just different hooks: the practical consequence, a personal admission, an unexpected result, a specific disagreement. Choose the strongest one for this request before polishing sentences. If the user says “try again,” change the premise, angle or emotional register; do not merely rephrase the opening. Use any specific feedback to guide that change.
 
-Choose the length that earns its space. Follow the current requested limit or supplied reference; do not turn a temporary preference into a permanent cap. With no length preference or reference, default to a portable ordinary post within 280 weighted characters. Use longer copy when requested or established by context. Distinguish a long post, thread and Article; do not split automatically or assume longer-format access. Never pad for dwell or compress a story just because short posts are fashionable.
+Choose the length that earns its space. Follow the current requested limit or supplied reference; do not turn a temporary preference into a permanent cap. Apply the author-specific defaults in the voice reference. For Tom, default to a concise post within 280 weighted characters where it fits, with a 400-weighted-character ceiling unless the current request specifies otherwise. For other authors with no length preference or reference, default to a portable ordinary post within 280 weighted characters. Use longer copy when requested or established by context. Distinguish a long post, thread and Article; do not split automatically or assume longer-format access. Never pad for dwell or compress a story just because short posts are fashionable.
 
 - For a launch, identify why the intended reader would care: a useful change, surprising result or personal consequence. Connect that angle to proof and a natural next step; a version number alone is not the angle.
 - For a personal observation, keep the actual experience and its payoff; allow a thought to remain unresolved.
@@ -40,7 +40,7 @@ For ongoing planning, identify a recognisable subject and intended reader across
 
 ## Write in the author's voice
 
-Make the opening understandable to the intended audience, including unfamiliar readers when discovery is the goal. A personal opening can establish its subject naturally; do not force a product name into the first sentence. Spend the body on the chosen idea and place proof near the claim it supports.
+Make the opening understandable to the intended audience, including unfamiliar readers when discovery is the goal. A personal opening can establish its subject naturally; do not force a product name into the first sentence. Spend the body on the chosen idea and place proof near the claim it supports. Make the opening deliver a meaningful observation before any expansion; do not withhold the entire payoff behind a teaser. For Tom, aim for roughly half the copy to be visible in the feed, but treat this as a layout preference, not a verified impression rule. Character count cannot guarantee the visible fraction across clients, line breaks and attachments.
 
 Keep earned enthusiasm, strong opinions, humour, self-deprecation and occasional rambling. Do not flatten a sharp observation into corporate caution. Remove fabricated controversy, deceptive curiosity gaps and unsupported certainty. Predicted negative feedback is not a reason to eliminate all disagreement.
 
@@ -63,4 +63,4 @@ Keep factual accuracy mandatory. A deliberately rough, funny, provocative or unf
 
 Return one strongest finished post by default, in a writing block when supported. Omit alternative hooks, scores, process commentary and algorithm theory unless requested. Honour requests for multiple options. For a critique, give the decisive weakness, a concrete fix and rewritten copy. Validate hard limits on final text including links and thread numbering.
 
-When reporting results, follow the learning reference and preserve observed facts separately from hypotheses. When refreshing algorithm guidance, follow the dated source procedure in the ranking reference and update both the installed skill and its maintained bundle through their supported workflows.
+When reporting results or reduced reach, follow the learning reference and preserve observed facts separately from hypotheses. Do not diagnose an algorithm penalty, audience fatigue or weaker writing from the decline alone. Continue improving copy with available evidence while requesting the smallest useful analytics sample when needed. When refreshing algorithm guidance, follow the dated source procedure in the ranking reference and update both the installed skill and its maintained bundle through their supported workflows.
